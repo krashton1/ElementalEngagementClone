@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -41,6 +42,18 @@ public class MainLoop : MonoBehaviour {
         if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 250.0f, LayerMask.GetMask("Choosable")) && selected == null)
         {
             SelectGO(hit.transform.gameObject);
+        }
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 250.0f, LayerMask.GetMask("Enemy")))
+        {
+            SetTarget(hit.transform.gameObject);
+        }
+    }
+
+    private void SetTarget(GameObject GO)
+    {
+        if (selected != null)
+        {
+            selected.GetComponent<MoveablePiece>().SetTarget(GO);
         }
     }
 
