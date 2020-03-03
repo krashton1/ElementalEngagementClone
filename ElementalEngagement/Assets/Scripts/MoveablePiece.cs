@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class MoveablePiece : MonoBehaviour {
@@ -9,6 +7,7 @@ public class MoveablePiece : MonoBehaviour {
     public float attack_range;
     private NavMeshAgent nav;
     public GameObject target;
+    private
 
     void Start()
     {
@@ -25,6 +24,7 @@ public class MoveablePiece : MonoBehaviour {
     public void SetFuturePosition(Vector3 V)
     {
         nav.destination = V;
+        target = null;
     }
 
     public void SetTarget(GameObject GO)

@@ -105,7 +105,7 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 1
+    agentRadius: 2
     agentHeight: 1
     agentSlope: 0
     agentClimb: 0
@@ -113,82 +113,13 @@ NavMeshSettings:
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.33333334
+    cellSize: 0.6666667
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 69f59ea30f61b054f9c2b06574a28dec, type: 2}
---- !u!1001 &331351320
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1312059674}
-    m_Modifications:
-    - target: {fileID: 9102316061203670214, guid: 61e28f6363c4cc3469b4323c1a5841d3,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9102316061203670214, guid: 61e28f6363c4cc3469b4323c1a5841d3,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 9102316061203670214, guid: 61e28f6363c4cc3469b4323c1a5841d3,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9102316061203670214, guid: 61e28f6363c4cc3469b4323c1a5841d3,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9102316061203670214, guid: 61e28f6363c4cc3469b4323c1a5841d3,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9102316061203670214, guid: 61e28f6363c4cc3469b4323c1a5841d3,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9102316061203670214, guid: 61e28f6363c4cc3469b4323c1a5841d3,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9102316061203670214, guid: 61e28f6363c4cc3469b4323c1a5841d3,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 9102316061203670214, guid: 61e28f6363c4cc3469b4323c1a5841d3,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9102316061203670214, guid: 61e28f6363c4cc3469b4323c1a5841d3,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9102316061203670214, guid: 61e28f6363c4cc3469b4323c1a5841d3,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9102316061203670215, guid: 61e28f6363c4cc3469b4323c1a5841d3,
-        type: 3}
-      propertyPath: m_Name
-      value: Test Player 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 61e28f6363c4cc3469b4323c1a5841d3, type: 3}
 --- !u!1 &563641376
 GameObject:
   m_ObjectHideFlags: 0
@@ -572,12 +503,6 @@ Transform:
   m_Father: {fileID: 1312059674}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 22.188002, y: 0, z: 0}
---- !u!4 &1237337275 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 9102316061203670214, guid: 61e28f6363c4cc3469b4323c1a5841d3,
-    type: 3}
-  m_PrefabInstance: {fileID: 331351320}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1312059672
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,7 +535,6 @@ Transform:
   - {fileID: 705507995}
   - {fileID: 809761586}
   - {fileID: 563641380}
-  - {fileID: 1237337275}
   - {fileID: 1938530884}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -641,12 +565,13 @@ GameObject:
   - component: {fileID: 1938530886}
   - component: {fileID: 1938530885}
   - component: {fileID: 1938530888}
-  m_Layer: 0
+  - component: {fileID: 1938530889}
+  m_Layer: 11
   m_Name: Test Barracks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_NavMeshLayer: 1
+  m_StaticEditorFlags: 40
   m_IsActive: 1
 --- !u!4 &1938530884
 Transform:
@@ -660,7 +585,7 @@ Transform:
   m_LocalScale: {x: 15, y: 15, z: 20}
   m_Children: []
   m_Father: {fileID: 1312059674}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1938530885
 BoxCollider:
@@ -743,3 +668,17 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &1938530889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938530883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 080340d889c76d34b9c8d4fe4a6e3f68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entity: {fileID: 9102316061203670215, guid: 61e28f6363c4cc3469b4323c1a5841d3, type: 3}
+  waypoint: {x: 20, y: 5, z: 20}
