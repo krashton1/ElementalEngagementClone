@@ -1,3 +1,18 @@
+
+
+
+!.gitignore
+!*/Assets/
+!*/ProjectSettings/
+
+
+*.dll
+*.zip
+Demos/
+Libraries/
+Executable/
+/Library/
+
 # This .gitignore file should be placed at the root of your Unity project directory
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
@@ -62,5 +77,11 @@ crashlytics-build.properties
 ElementalEngagement/Temp/
 
 ElementalEngagement/Library/
+
+ElementalEngagement/obj/Debug/
+
+ElementalEngagement/Library/
+
+ElementalEngagement/Temp/
 
 ElementalEngagement/obj/Debug/

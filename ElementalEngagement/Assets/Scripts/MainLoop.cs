@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MainLoop : MonoBehaviour {
     // Start is called before the first frame update
@@ -42,6 +40,31 @@ public class MainLoop : MonoBehaviour {
         {
             SelectGO(hit.transform.gameObject);
         }
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 250.0f, LayerMask.GetMask("Enemy")))
+        {
+            SetTarget(hit.transform.gameObject);
+        }
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 250.0f, LayerMask.GetMask("Building")))
+        {
+            ActivateBulding(hit.transform.gameObject, hit.point);
+        }
+    }
+
+    private void ActivateBulding(GameObject GO, Vector3 V)
+    {
+        if (selected == null)
+        {
+            GO.GetComponent<UnitSpawner>().SpawnEntity();
+            GO.GetComponent<UnitSpawner>().SetWaypoint(V);
+        }
+    }
+
+    private void SetTarget(GameObject GO)
+    {
+        if (selected != null)
+        {
+            selected.GetComponent<MoveablePiece>().SetTarget(GO);
+        }
     }
 
     void HandleMouseTwoEvent()
@@ -58,7 +81,10 @@ public class MainLoop : MonoBehaviour {
         Renderer R = selected.GetComponent<Renderer>();
         selected_base_mat = R.material;
         R.material = selected_mat;
-    }
+
+		selected.GetComponent<MoveablePiece>().setSelected(true);
+
+	}
 
     void MoveSelected(Vector3 V)
     {
@@ -70,7 +96,10 @@ public class MainLoop : MonoBehaviour {
 
     void DeselectGO()
     {
-        Renderer R = selected.GetComponent<Renderer>();
+
+		selected.GetComponent<MoveablePiece>().setSelected(false);
+
+		Renderer R = selected.GetComponent<Renderer>();
         R.material = selected_base_mat;
         selected = null;
         selected_base_mat = null;
