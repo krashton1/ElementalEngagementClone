@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MainLoop : MonoBehaviour {
     // Start is called before the first frame update
@@ -41,6 +39,31 @@ public class MainLoop : MonoBehaviour {
         if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 250.0f, LayerMask.GetMask("Choosable")) && selected == null)
         {
             SelectGO(hit.transform.gameObject);
+        }
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 250.0f, LayerMask.GetMask("Enemy")))
+        {
+            SetTarget(hit.transform.gameObject);
+        }
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 250.0f, LayerMask.GetMask("Building")))
+        {
+            ActivateBulding(hit.transform.gameObject, hit.point);
+        }
+    }
+
+    private void ActivateBulding(GameObject GO, Vector3 V)
+    {
+        if (selected == null)
+        {
+            GO.GetComponent<UnitSpawner>().SpawnEntity();
+            GO.GetComponent<UnitSpawner>().SetWaypoint(V);
+        }
+    }
+
+    private void SetTarget(GameObject GO)
+    {
+        if (selected != null)
+        {
+            selected.GetComponent<MoveablePiece>().SetTarget(GO);
         }
     }
 

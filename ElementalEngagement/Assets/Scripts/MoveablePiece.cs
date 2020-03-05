@@ -1,13 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-public class MoveablePiece : MonoBehaviour {
+public class MoveablePiece : Unit {
     // Start is called before the first frame update
     public float speed = 1.0f;
+    public float attack_range;
     private NavMeshAgent nav;
+    public GameObject target;
+    private
 
 	
 	private int mHealth = 30;
@@ -24,7 +25,8 @@ public class MoveablePiece : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        MovePiece();
+        if (target != null)
+            TargetEnemy();
 
 		mElapsedTime += Time.deltaTime;
 		if (mElapsedTime >= 1.0f)
@@ -42,9 +44,25 @@ public class MoveablePiece : MonoBehaviour {
     public void SetFuturePosition(Vector3 V)
     {
         nav.destination = V;
+        target = null;
     }
 
-    private void MovePiece()
+    public void SetTarget(GameObject GO)
     {
+        target = GO;
+    }
+
+    private void TargetEnemy()
+    {
+        float dist = Vector3.Distance(transform.position, target.transform.position);
+        if (dist > attack_range)
+        {
+            nav.destination = target.transform.position;
+        }
+        else
+        {
+            nav.destination = transform.position;
+        }
+
     }
 }
