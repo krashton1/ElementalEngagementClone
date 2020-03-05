@@ -2,13 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class MoveablePiece : MonoBehaviour {
     // Start is called before the first frame update
     public float speed = 1.0f;
     private NavMeshAgent nav;
 
-    void Start()
+	
+	private int mHealth = 30;
+	private int mHealthCap = 100;
+
+
+	private float mElapsedTime = 0.0f;
+
+	void Start()
     {
         nav = GetComponent<NavMeshAgent>();
     }
@@ -17,7 +25,19 @@ public class MoveablePiece : MonoBehaviour {
     void Update()
     {
         MovePiece();
-    }
+
+		mElapsedTime += Time.deltaTime;
+		if (mElapsedTime >= 1.0f)
+		{
+			mElapsedTime = mElapsedTime % 1.0f;
+
+			if (mHealth < mHealthCap)
+			{
+				mHealth++;
+			}
+		}
+		
+	}
 
     public void SetFuturePosition(Vector3 V)
     {
