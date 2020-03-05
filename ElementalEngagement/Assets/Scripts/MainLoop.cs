@@ -81,7 +81,10 @@ public class MainLoop : MonoBehaviour {
         Renderer R = selected.GetComponent<Renderer>();
         selected_base_mat = R.material;
         R.material = selected_mat;
-    }
+
+		selected.GetComponent<MoveablePiece>().setSelected(true);
+
+	}
 
     void MoveSelected(Vector3 V)
     {
@@ -93,7 +96,10 @@ public class MainLoop : MonoBehaviour {
 
     void DeselectGO()
     {
-        Renderer R = selected.GetComponent<Renderer>();
+
+		selected.GetComponent<MoveablePiece>().setSelected(false);
+
+		Renderer R = selected.GetComponent<Renderer>();
         R.material = selected_base_mat;
         selected = null;
         selected_base_mat = null;

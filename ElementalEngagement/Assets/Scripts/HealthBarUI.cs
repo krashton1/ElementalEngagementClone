@@ -16,9 +16,6 @@ public class HealthBarUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		mHealthBar.enabled = true;
-
-		mHealthBar.transform.position = transform.position + new Vector3(0.0f, 50.0f, 0.0f);
-		mHealthBar.value = 0.20f;
+		
     }
 }
