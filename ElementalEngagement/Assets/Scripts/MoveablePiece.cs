@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-public class MoveablePiece : MonoBehaviour {
+public class MoveablePiece : Unit {
     // Start is called before the first frame update
     public float speed = 1.0f;
     public float attack_range;
