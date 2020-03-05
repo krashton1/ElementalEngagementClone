@@ -62,3 +62,5 @@ crashlytics-build.properties
 ElementalEngagement/Temp/
 
 ElementalEngagement/Library/
+
+ElementalEngagement/obj/Debug/
