@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Unit : MonoBehaviour {
     public int health = 100;
@@ -16,10 +14,11 @@ public class Unit : MonoBehaviour {
     {
     }
 
-    public void takeDamage(int damage_amount)
+    public void Damage(int damage_amount)
     {
         health -= damage_amount;
-        if (health < 0)
+        // Debug.Log(name + ": Took " + damage_amount + " damage ||| " + health);
+        if (health <= 0)
         {
             Destroy(gameObject);
         }
