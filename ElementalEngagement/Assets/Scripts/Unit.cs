@@ -24,7 +24,7 @@ public class Unit : MonoBehaviour {
 		// This isnt being called, unexpected behaviour
 	}
 
-	public void takeDamage(int damage_amount)
+	public void Damage(int damage_amount)
     {
         healthCap -= damage_amount;
         if (healthCap < 0)
