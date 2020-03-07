@@ -49,7 +49,7 @@ public class MoveablePiece : Unit {
             if (selected)
             {
                 hpBarUi.gameObject.SetActive(true);
-                hpBarUi.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 8, 0));
+                hpBarUi.transform.position = Camera.main.WorldToScreenPoint(transform.position + new Vector3(0, 2, 0));
                 hpBarUi.value = ((float)(healthCurrent) / (float)(healthCap));
                 //Debug.Log(hpBarUi.value);
             }
@@ -92,7 +92,7 @@ public class MoveablePiece : Unit {
             Vector3 dist = target.transform.position - transform.position;
             if (dist.magnitude < attack_range)
             {
-                Projectile MP = Instantiate(projectile, transform.position + (dist.normalized * 5 * GetComponent<CapsuleCollider>().radius), new Quaternion()).GetComponent<Projectile>();
+                Projectile MP = Instantiate(projectile, transform.position + (dist.normalized * 2 * GetComponent<CapsuleCollider>().radius), new Quaternion()).GetComponent<Projectile>();
                 MP.SetDirection(dist);
                 MP.SetDamage(25);
                 MP.SetGO(gameObject);

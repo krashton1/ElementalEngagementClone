@@ -82,4 +82,16 @@ public class PlayerBehaviour : MonoBehaviour
 	{
 		return mPopulationCap;
 	}
+
+	public void addGold(int i){
+		if (mGold + i >= 0 && mGold + i <= mGoldCap){
+			mGold += i;
+		}
+	}
+
+	public void addMana(int i){
+		if (mMana + i >= 0 && mMana + i <= mManaCap){
+			mMana += i;
+		}
+	}
 }

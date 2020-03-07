@@ -9,7 +9,7 @@ public class UnitSpawner : MonoBehaviour {
 
     void Start()
     {
-
+        mPlayer = GameObject.Find("PlayerController").GetComponent<PlayerBehaviour>();
     }
 
     // Update is called once per frame
@@ -25,8 +25,8 @@ public class UnitSpawner : MonoBehaviour {
 			{
 				mPlayer.setGold(mPlayer.getGold() - 5);
 				mPlayer.setPopulation(mPlayer.getPopulation() + 1);
-				MoveablePiece MP = Instantiate(entity, transform.position + new Vector3(10f, 0f, 0f), new Quaternion()).GetComponent<MoveablePiece>();
-			}
+				MoveablePiece MP = Instantiate(entity, transform.position + waypoint + new Vector3(-Random.value, 0, -Random.value), new Quaternion()).GetComponent<MoveablePiece>();
+            }
 		}
     }
 

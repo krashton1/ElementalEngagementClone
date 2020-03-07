@@ -52,10 +52,11 @@ public class MainLoop : MonoBehaviour {
 
     private void ActivateBulding(GameObject GO, Vector3 V)
     {
+        print("Test");
         if (selected == null)
         {
             GO.GetComponent<UnitSpawner>().SpawnEntity();
-            GO.GetComponent<UnitSpawner>().SetWaypoint(V);
+            //GO.GetComponent<UnitSpawner>().SetWaypoint(V);
         }
     }
 

@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 public class Projectile : MonoBehaviour {
     public int damage = 5;
-    public float speed = 1.0f;
+    public float speed = 0.5f;
     public Vector3 direction;
     private GameObject parent;
+    float lifetime = 2;
 
     // Start is called before the first frame update
     void Start()
@@ -14,6 +15,10 @@ public class Projectile : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        lifetime -= Time.deltaTime;
+        if (lifetime <= 0){
+            Destroy(gameObject);
+        }
         transform.position = transform.position + direction.normalized * speed;
     }
 
