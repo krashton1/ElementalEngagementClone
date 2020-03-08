@@ -32,7 +32,7 @@ public class ConstructionAbility : Ability
 
         GameObject newStructure = GameObject.Instantiate(prefab, Vector3.zero, Quaternion.identity);
         if (Random.value < 0.5f) {
-            newStructure.transform.Rotate(new Vector3(0, 90, 0));
+            newStructure.transform.Rotate(new Vector3(0, -90, 0));
         }
         Structure s = newStructure.GetComponent<Structure>();
         newStructure.name = s.type + newStructure.GetInstanceID();

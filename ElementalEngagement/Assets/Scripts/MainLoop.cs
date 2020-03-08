@@ -27,6 +27,9 @@ public class MainLoop : MonoBehaviour {
         {
             HandleMouseTwoEvent();
         }
+        if (Input.GetKey ("escape")) {
+                 Application.Quit();
+                }
     }
 
     void HandleMouseOneEvent()
