@@ -5,10 +5,13 @@ class InputManager : MonoBehaviour {
     private IList<Unit> selected;
     private Vector3 mouse_one_pressed;
     private Vector3 mouse_one_released;
+    public Texture box_select_texture;
+    private bool drawBox;
 
     void Start()
     {
         selected = new List<Unit>();
+        drawBox = false;
     }
 
     // Update is called once per frame
@@ -33,6 +36,11 @@ class InputManager : MonoBehaviour {
             mouse_one_released = Input.mousePosition;
             if (mouse_one_pressed != mouse_one_released)
                 BoxSelectGO();
+            drawBox = false;
+        }
+        else if (Input.GetMouseButton(0))
+        {
+            drawBox = true;
         }
         if (Input.GetKey("escape"))
         {
@@ -43,9 +51,10 @@ class InputManager : MonoBehaviour {
     void HandleMouseOneEvent()
     {
         RaycastHit hit;
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 250.0f, LayerMask.GetMask("Ground")))
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 250.0f, LayerMask.GetMask("Building")))
         {
-            MoveSelected(hit.point);
+            ActivateBulding(hit.transform.gameObject, hit.point);
+            DeselectGO();
         }
         if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 250.0f, LayerMask.GetMask("Choosable")))
         {
@@ -55,9 +64,9 @@ class InputManager : MonoBehaviour {
         {
             SetTarget(hit.transform.gameObject);
         }
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 250.0f, LayerMask.GetMask("Building")))
+        else if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 250.0f, LayerMask.GetMask("Ground")))
         {
-            ActivateBulding(hit.transform.gameObject, hit.point);
+            MoveSelected(hit.point);
         }
     }
 
@@ -128,6 +137,22 @@ class InputManager : MonoBehaviour {
             }
         }
 
+    }
+
+    void OnGUI()
+    {
+        if (drawBox)
+        {
+            //           Vector2 max = new Vector2(Mathf.Max(mouse_one_pressed.x, Input.mousePosition.x), Mathf.Max(mouse_one_pressed.y, Input.mousePosition.y));
+            //            Vector2 min = new Vector2(Mathf.Min(mouse_one_pressed.x, Input.mousePosition.x), Mathf.Min(mouse_one_pressed.y, Input.mousePosition.y));
+            Rect boxArea = new Rect(new Vector2(mouse_one_pressed.x, Screen.height - mouse_one_pressed.y), new Vector2(Input.mousePosition.x - mouse_one_pressed.x, mouse_one_pressed.y - Input.mousePosition.y));
+
+            Debug.Log(mouse_one_pressed);
+            Debug.Log(Input.mousePosition);
+            Debug.Log(boxArea);
+
+            GUI.DrawTexture(boxArea, box_select_texture);
+        }
     }
 
     void MoveSelected(Vector3 V)
