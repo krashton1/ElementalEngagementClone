@@ -632,6 +632,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36bc8f0cc5d56014284f82c3079c2086, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  box_select_texture: {fileID: 2800000, guid: 692fb1b939158a34bbb73851536a6b37, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
