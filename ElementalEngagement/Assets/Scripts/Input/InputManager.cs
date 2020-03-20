@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 class InputManager : MonoBehaviour {
     private IList<Entity> selected;
@@ -7,6 +9,9 @@ class InputManager : MonoBehaviour {
     private Vector3 mouse_one_released;
     public Texture box_select_texture;
     private bool drawBox;
+
+    public PlayerUI ui;
+
 
     void Start()
     {
@@ -57,6 +62,12 @@ class InputManager : MonoBehaviour {
             ActivateBulding(hit.transform.gameObject, hit.point);
             DeselectGO();
         }*/
+
+        // Stop checking MouseDown if the mouse is over a UI element
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
         if (selected != null && !Input.GetKey("left ctrl"))
         {
             DeselectGO();
@@ -111,6 +122,12 @@ class InputManager : MonoBehaviour {
         {
             en.setSelected(true);
             selected.Add(en);
+            if (selected.Count == 1){
+                ui.setSelectedEntity(en);
+            }
+            else if (selected.Count > 1){
+                ui.selectMany(selected.Count);
+            }
         }
        /*  else
         {
@@ -183,6 +200,7 @@ class InputManager : MonoBehaviour {
         }
 
         selected.Clear();
+        ui.deselect();
     }
 }
 

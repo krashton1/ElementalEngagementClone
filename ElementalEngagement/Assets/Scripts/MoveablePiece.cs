@@ -19,7 +19,7 @@ public class MoveablePiece : Unit {
     {
         nav = GetComponent<NavMeshAgent>();
         current_attack_frame = 0;
-        healthCurrent = 0;
+        healthCurrent = healthCap;
     }
 
     // Update is called once per frame

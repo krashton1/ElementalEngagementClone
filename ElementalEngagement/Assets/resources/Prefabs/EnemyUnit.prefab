@@ -129,6 +129,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec14624727694804c853413c1709507f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selected_mat: {fileID: 0}
   healthCap: 100
-  healthCurrent: 0
+  healthCurrent: 100
   hpBarUi: {fileID: 0}
+  entityName: Enemy Unit

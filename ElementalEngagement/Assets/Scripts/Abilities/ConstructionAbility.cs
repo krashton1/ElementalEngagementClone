@@ -16,7 +16,7 @@ public class ConstructionAbility : Ability
         resourceManager = resources_;
     }
 
-    public override void invoke(){
+    public override void invoke(GameObject source){
         controller.listenForSelection(OnSelection);
         Structure s = prefab.GetComponent<Structure>();
         controller.beginTileSelection((int)s.dimensions.x, (int)s.dimensions.y);

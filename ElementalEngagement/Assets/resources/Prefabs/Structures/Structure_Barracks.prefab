@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 3229158654520560741}
   - component: {fileID: 3229158654520560740}
   - component: {fileID: 3229158654520560739}
+  - component: {fileID: 7401201027732284733}
   m_Layer: 9
   m_Name: Structure_Barracks
   m_TagString: Untagged
@@ -80,6 +81,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected_mat: {fileID: 0}
+  healthCap: 125
+  healthCurrent: 125
+  hpBarUi: {fileID: 0}
+  entityName: Barracks
   dimensions: {x: 3, y: 3}
   type: Barracks
 --- !u!65 &3229158654520560740
@@ -107,9 +112,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 080340d889c76d34b9c8d4fe4a6e3f68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entity: {fileID: 9102316061203670215, guid: 61e28f6363c4cc3469b4323c1a5841d3, type: 3}
-  waypoint: {x: -5, y: 0.5, z: -5}
-  mPlayer: {fileID: 0}
+  offset: {x: -5, y: 0.5, z: -5}
+  waypoint: {x: 0, y: 0, z: 0}
+--- !u!114 &7401201027732284733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3229158654520560738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306c87651623b454fb68b52b46988359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityNames:
+  - unit_Soldier
 --- !u!1001 &3229158654352890905
 PrefabInstance:
   m_ObjectHideFlags: 0

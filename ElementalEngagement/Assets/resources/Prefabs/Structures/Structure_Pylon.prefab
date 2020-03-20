@@ -63,6 +63,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected_mat: {fileID: 0}
+  healthCap: 100
+  healthCurrent: 100
+  hpBarUi: {fileID: 0}
+  entityName: Mana Pylon
   dimensions: {x: 1, y: 1}
   type: Pylon
 --- !u!136 &1972983054685153856

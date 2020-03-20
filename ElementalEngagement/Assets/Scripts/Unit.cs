@@ -1,12 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Unit : Entity {
-    public int healthCap = 100;
-    public int healthCurrent;
-    public Slider hpBarUi;
+    
 
 
     // Start is called before the first frame update
@@ -21,13 +18,5 @@ public class Unit : Entity {
         // This isnt being called, unexpected behaviour
     }
 
-    public void Damage(int damage_amount)
-    {
-        healthCap -= damage_amount;
-        if (healthCap < 0)
-        {
-            Destroy(gameObject);
-        }
 
-    }
 }

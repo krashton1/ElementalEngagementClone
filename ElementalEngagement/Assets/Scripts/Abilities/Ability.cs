@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Ability
 {
     //do nothing for now
-    public abstract void invoke();
+    public abstract void invoke(GameObject source);
 
     protected Cost cost;
     protected string fullName;

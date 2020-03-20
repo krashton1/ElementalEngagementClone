@@ -63,6 +63,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected_mat: {fileID: 0}
+  healthCap: 75
+  healthCurrent: 75
+  hpBarUi: {fileID: 0}
+  entityName: House
   dimensions: {x: 2, y: 2}
   type: House
 --- !u!65 &3114300396451121156

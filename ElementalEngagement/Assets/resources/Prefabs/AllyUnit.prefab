@@ -482,6 +482,7 @@ MonoBehaviour:
   healthCap: 100
   healthCurrent: 0
   hpBarUi: {fileID: 8336004589247946437}
+  entityName: Test Unit
   speed: 0.2
   attack_range: 5
   stop_range: 5

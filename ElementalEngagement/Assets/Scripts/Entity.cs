@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using cakeslice;
+using UnityEngine.UI;
 
 public class Entity : MonoBehaviour
 {
@@ -14,6 +15,12 @@ public class Entity : MonoBehaviour
 
     // If this piece is currently selected
     protected bool selected = false;
+
+
+    public int healthCap = 100;
+    public int healthCurrent;
+    public Slider hpBarUi;
+    public string entityName;
 
     public void handleReceiveTarget(RaycastHit hit, TypeOfTarget type){
         if (type == TypeOfTarget.Entity){
@@ -31,6 +38,7 @@ public class Entity : MonoBehaviour
     virtual public void targetPosition(Vector3 point){
 
     }
+    
 
     public bool getSelected()
     {
@@ -52,9 +60,19 @@ public class Entity : MonoBehaviour
             selected_base_mat = null;
         } */
 
-        Outline outline = GetComponent<Outline>();
-        if(!outline) outline = GetComponentInChildren<Outline>();
+        cakeslice.Outline outline = GetComponent<cakeslice.Outline>();
+        if(!outline) outline = GetComponentInChildren<cakeslice.Outline>();
         outline.eraseRenderer = !b;
         selected = b;
+    }
+
+        public void Damage(int damage_amount)
+    {
+        healthCap -= damage_amount;
+        if (healthCap < 0)
+        {
+            Destroy(gameObject);
+        }
+
     }
 }

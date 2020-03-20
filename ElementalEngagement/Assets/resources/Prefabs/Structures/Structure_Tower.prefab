@@ -47,6 +47,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selected_mat: {fileID: 0}
+  healthCap: 200
+  healthCurrent: 200
+  hpBarUi: {fileID: 0}
+  entityName: Watch Tower
   dimensions: {x: 2, y: 2}
   type: Tower
 --- !u!136 &4749809741152171885
