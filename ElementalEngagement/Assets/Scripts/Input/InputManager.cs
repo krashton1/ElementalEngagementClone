@@ -1,16 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 class InputManager : MonoBehaviour {
-    private IList<Unit> selected;
+    private IList<Entity> selected;
     private Vector3 mouse_one_pressed;
     private Vector3 mouse_one_released;
     public Texture box_select_texture;
     private bool drawBox;
 
+    public PlayerUI ui;
+
+
     void Start()
     {
-        selected = new List<Unit>();
+        selected = new List<Entity>();
         drawBox = false;
     }
 
@@ -26,6 +31,7 @@ class InputManager : MonoBehaviour {
         {
             HandleMouseOneEvent();
             mouse_one_pressed = Input.mousePosition;
+            print("Mouse Down!");
         }
         else if (Input.GetMouseButtonDown(1))
         {
@@ -51,62 +57,83 @@ class InputManager : MonoBehaviour {
     void HandleMouseOneEvent()
     {
         RaycastHit hit;
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 250.0f, LayerMask.GetMask("Building")))
+        /*if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 250.0f, LayerMask.GetMask("Building")))
         {
             ActivateBulding(hit.transform.gameObject, hit.point);
+            DeselectGO();
+        }*/
+
+        // Stop checking MouseDown if the mouse is over a UI element
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+        if (selected != null && !Input.GetKey("left ctrl"))
+        {
             DeselectGO();
         }
         if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 250.0f, LayerMask.GetMask("Choosable")))
         {
             SelectGO(hit.transform.gameObject);
         }
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 250.0f, LayerMask.GetMask("Enemy")))
-        {
-            SetTarget(hit.transform.gameObject);
-        }
-        else if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 250.0f, LayerMask.GetMask("Ground")))
-        {
-            MoveSelected(hit.point);
-        }
+
     }
 
-    private void ActivateBulding(GameObject GO, Vector3 V)
+   /*  private void ActivateBulding(GameObject GO, Vector3 V)
     {
         GO.GetComponent<UnitSpawner>().SpawnEntity();
-    }
+    } */
 
     private void SetTarget(GameObject GO)
     {
-        foreach (Unit U in selected)
+        foreach (Entity U in selected)
         {
             MoveablePiece MP = (MoveablePiece)U;
             MP.SetTarget(GO);
         }
     }
 
+    private void target(RaycastHit hit, Entity.TypeOfTarget type){
+        foreach (Entity E in selected)
+        {
+            E.handleReceiveTarget(hit, type);
+        }
+    }
+
     void HandleMouseTwoEvent()
     {
-        if (selected != null)
+        RaycastHit hit;
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 250.0f, LayerMask.GetMask("Enemy")))
         {
-            DeselectGO();
+            //SetTarget(hit.transform.gameObject);
+            target(hit, Entity.TypeOfTarget.Entity);
+        }
+        else if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 250.0f, LayerMask.GetMask("Ground")))
+        {
+            //MoveSelected(hit.point);
+            target(hit, Entity.TypeOfTarget.GroundPosition);
         }
     }
 
     void SelectGO(GameObject GO)
     {
-        MoveablePiece MP = GO.GetComponent<MoveablePiece>();
-        MP.setSelected(true);
-
-        if ((selected.Count == 0 || Input.GetKey("left ctrl")) && !selected.Contains(MP))
+        Entity en = GO.GetComponent<Entity>();
+        if (!selected.Contains(en))
         {
-            selected.Add(MP);
+            en.setSelected(true);
+            selected.Add(en);
+            if (selected.Count == 1){
+                ui.setSelectedEntity(en);
+            }
+            else if (selected.Count > 1){
+                ui.selectMany(selected.Count);
+            }
         }
-        else
+       /*  else
         {
             DeselectGO();
-            selected.Clear();
-            selected.Add(MP);
-        }
+            selected.Add(en);
+        } */
     }
 
     void BoxSelectGO()
@@ -121,7 +148,7 @@ class InputManager : MonoBehaviour {
             Vector3 cameraPoint = Camera.main.WorldToScreenPoint(GO.transform.position);
             if (max.x > cameraPoint.x && min.x < cameraPoint.x && max.y > cameraPoint.y && min.y < cameraPoint.y)
             {
-                MoveablePiece MP = GO.GetComponent<MoveablePiece>();
+                /*MoveablePiece MP = GO.GetComponent<MoveablePiece>();
                 MP.setSelected(true);
                 if ((empty || Input.GetKey("left ctrl")) && !selected.Contains(MP))
                 {
@@ -133,7 +160,8 @@ class InputManager : MonoBehaviour {
                     selected.Clear();
                     selected.Add(MP);
                     empty = true;
-                }
+                }*/
+                SelectGO(GO);
             }
         }
 
@@ -147,9 +175,9 @@ class InputManager : MonoBehaviour {
             //            Vector2 min = new Vector2(Mathf.Min(mouse_one_pressed.x, Input.mousePosition.x), Mathf.Min(mouse_one_pressed.y, Input.mousePosition.y));
             Rect boxArea = new Rect(new Vector2(mouse_one_pressed.x, Screen.height - mouse_one_pressed.y), new Vector2(Input.mousePosition.x - mouse_one_pressed.x, mouse_one_pressed.y - Input.mousePosition.y));
 
-            Debug.Log(mouse_one_pressed);
-            Debug.Log(Input.mousePosition);
-            Debug.Log(boxArea);
+            //Debug.Log(mouse_one_pressed);
+            //Debug.Log(Input.mousePosition);
+            //Debug.Log(boxArea);
 
             GUI.DrawTexture(boxArea, box_select_texture);
         }
@@ -166,12 +194,13 @@ class InputManager : MonoBehaviour {
 
     void DeselectGO()
     {
-        foreach (Unit U in selected)
+        foreach (Entity U in selected)
         {
             U.setSelected(false);
         }
 
         selected.Clear();
+        ui.deselect();
     }
 }
 

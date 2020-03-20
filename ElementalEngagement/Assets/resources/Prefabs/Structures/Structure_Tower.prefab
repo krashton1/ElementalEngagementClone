@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -320107190035202827}
   - component: {fileID: 4749809741152171885}
   - component: {fileID: 3656944181067701450}
-  m_Layer: 11
+  m_Layer: 9
   m_Name: Structure_Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,6 +46,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc97ec7f973c35646a1c9bf5af57b4ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selected_mat: {fileID: 0}
+  healthCap: 200
+  healthCurrent: 200
+  hpBarUi: {fileID: 0}
+  entityName: Watch Tower
   dimensions: {x: 2, y: 2}
   type: Tower
 --- !u!136 &4749809741152171885
@@ -87,7 +92,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9205076797817139827}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +125,8 @@ GameObject:
   - component: {fileID: 7056234343571027675}
   - component: {fileID: 189171651543435583}
   - component: {fileID: 7243173334929348896}
-  m_Layer: 0
+  - component: {fileID: 3991684048846292183}
+  m_Layer: 9
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,3 +195,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &3991684048846292183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9146823055506466926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 2
+  eraseRenderer: 1
+  originalLayer: 0
+  originalMaterials: []

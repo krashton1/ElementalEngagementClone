@@ -19,7 +19,7 @@ public class MoveablePiece : Unit {
     {
         nav = GetComponent<NavMeshAgent>();
         current_attack_frame = 0;
-        healthCurrent = 0;
+        healthCurrent = healthCap;
     }
 
     // Update is called once per frame
@@ -60,6 +60,16 @@ public class MoveablePiece : Unit {
 
         }
     }
+
+    // These target handlers are inherited from entity
+    override public void targetEntity(GameObject target){
+        SetTarget(target);
+    }
+
+    override public void targetPosition(Vector3 point){
+        SetFuturePosition(point);
+    }
+
 
     public void SetFuturePosition(Vector3 V)
     {
