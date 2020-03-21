@@ -31,7 +31,6 @@ class InputManager : MonoBehaviour {
         {
             HandleMouseOneEvent();
             mouse_one_pressed = Input.mousePosition;
-            print("Mouse Down!");
         }
         else if (Input.GetMouseButtonDown(1))
         {

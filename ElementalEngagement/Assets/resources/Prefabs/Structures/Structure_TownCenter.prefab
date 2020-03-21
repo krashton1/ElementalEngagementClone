@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1269372314748532525}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 7.82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5449692129437185357}
@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: -5, y: -5, z: -5}
-  waypoint: {x: 0, y: 0, z: 0}
+  waypoint: {x: 0, y: 1.13, z: 0}
 --- !u!208 &567382178249199459
 NavMeshObstacle:
   m_ObjectHideFlags: 0

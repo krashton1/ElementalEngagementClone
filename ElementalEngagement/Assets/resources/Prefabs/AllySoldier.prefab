@@ -106,6 +106,11 @@ PrefabInstance:
       propertyPath: entityName
       value: Soldier
       objectReference: {fileID: 0}
+    - target: {fileID: 9102316061203670210, guid: 61e28f6363c4cc3469b4323c1a5841d3,
+        type: 3}
+      propertyPath: speed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 9102316061203670214, guid: 61e28f6363c4cc3469b4323c1a5841d3,
         type: 3}
       propertyPath: m_LocalPosition.x
