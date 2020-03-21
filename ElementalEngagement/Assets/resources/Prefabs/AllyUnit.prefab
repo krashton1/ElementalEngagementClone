@@ -478,7 +478,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6391a3cead53ba1468ab7ff8476adaa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selected_mat: {fileID: 2100000, guid: 2c064cef40ce7c64a9735a9e60abe048, type: 2}
   healthCap: 100
   healthCurrent: 0
   hpBarUi: {fileID: 8336004589247946437}
@@ -491,6 +490,50 @@ MonoBehaviour:
     type: 3}
   attack_frame_counter: 30
   current_attack_frame: 0
+  easingCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: -0.0016784668
+      inSlope: -0.03769359
+      outSlope: -0.03769359
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.21960326
+    - serializedVersion: 3
+      time: 0.201267
+      value: 0.10016227
+      inSlope: 1.1179354
+      outSlope: 1.1179354
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.052743174
+    - serializedVersion: 3
+      time: 0.79818183
+      value: 0.90008855
+      inSlope: 1.1446338
+      outSlope: 1.1446338
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.06896627
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0.99832153
+      inSlope: -0.074480176
+      outSlope: -0.074480176
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.22467221
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  testSpherePrefab: {fileID: 7171286475495991440, guid: 41d76c2fd3057884184ddea22abaa7ec,
+    type: 3}
 --- !u!195 &9102316061203670237
 NavMeshAgent:
   m_ObjectHideFlags: 0

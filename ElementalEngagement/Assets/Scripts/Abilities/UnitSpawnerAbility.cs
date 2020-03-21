@@ -15,7 +15,6 @@ public class UnitSpawnerAbility : Ability
     }
 
     public override void invoke(GameObject source){
-        Debug.Log("Ability invoked!");
        if(resourceManager.getPopulation() < resourceManager.getPopulationCap()
        && resourceManager.getMana() >= cost.mana && resourceManager.getGold() >= cost.gold)
 		{

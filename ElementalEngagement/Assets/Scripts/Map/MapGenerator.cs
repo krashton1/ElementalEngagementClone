@@ -23,7 +23,6 @@ public class MapGenerator : MonoBehaviour
 
         // move this to a game controller class
         Camera.main.GetComponent<CameraController>().position = TownCenter.transform.position - new Vector3(15, 0, 15);
-
         //Build nav mesh
         surface.BuildNavMesh();
 

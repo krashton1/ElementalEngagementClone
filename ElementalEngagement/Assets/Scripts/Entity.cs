@@ -10,9 +10,6 @@ public class Entity : MonoBehaviour
     public enum TypeOfTarget {Entity, GroundPosition};
 
 
-    public Material selected_mat;
-    private Material selected_base_mat;
-
     // If this piece is currently selected
     protected bool selected = false;
 
@@ -47,19 +44,6 @@ public class Entity : MonoBehaviour
 
     public void setSelected(bool b)
     {
-        /* Renderer R = GetComponent<Renderer>();
-        if (!R) R = GetComponentInChildren<Renderer>();
-        if (b)
-        {
-            selected_base_mat = R.material;
-            R.material = selected_mat;
-        }
-        else
-        {
-            R.material = selected_base_mat;
-            selected_base_mat = null;
-        } */
-
         cakeslice.Outline outline = GetComponent<cakeslice.Outline>();
         if(!outline) outline = GetComponentInChildren<cakeslice.Outline>();
         outline.eraseRenderer = !b;
