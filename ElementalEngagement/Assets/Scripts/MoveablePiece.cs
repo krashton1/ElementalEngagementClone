@@ -16,6 +16,8 @@ public class MoveablePiece : Unit {
     public int attack_frame_counter = 30;
     public int current_attack_frame;
     private float mElapsedTime = 0.0f;
+	
+	private Animator anim;
 
     // Structure for Hermite Curve
     // Since we don't do pathfinding, all our paths have only two points - start and end
@@ -41,6 +43,8 @@ public class MoveablePiece : Unit {
         nav = GetComponent<NavMeshAgent>();
         current_attack_frame = 0;
         healthCurrent = healthCap;
+
+		anim = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -96,7 +100,8 @@ public class MoveablePiece : Unit {
     public void SetFuturePosition(Vector3 V)
     {
         nav.destination = V;
-        target = null;
+		target = null;
+		
     }
 
     public void SetTarget(GameObject GO)
@@ -175,9 +180,15 @@ public class MoveablePiece : Unit {
 
     IEnumerator Move()
     {
-        // Move along the path by interpolating from 0 -> 1
-        // Update position 20 times per second
-        for (float s = 0.0f; s < timeToTravel; s += 0.05f)
+		// Move along the path by interpolating from 0 -> 1
+		// Update position 20 times per second
+
+		if(anim!=null)
+		{
+			anim.SetBool("Moving", true);
+		}
+
+		for (float s = 0.0f; s < timeToTravel; s += 0.05f)
         {
             // Apply an easing function
             float t = Mathf.InverseLerp(0, timeToTravel, s);
@@ -208,7 +219,11 @@ public class MoveablePiece : Unit {
             yield return new WaitForSeconds(0.05f);
         }
         this.transform.position = spline.pointB;
-        yield return null;
+		if (anim != null)
+		{
+			anim.SetBool("Moving", false);
+		}
+		yield return null;
     }
 
 }
