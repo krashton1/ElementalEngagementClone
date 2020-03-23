@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Prototype_Flocking.unity
+    guid: 3ab0ebb68619c2c489ec6b7ff1dbb18e
   m_configObjects: {}

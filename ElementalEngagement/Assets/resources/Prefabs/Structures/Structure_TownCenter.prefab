@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1331235543678397452}
   m_Layer: 9
   m_Name: Structure_TownCenter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,7 +48,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc97ec7f973c35646a1c9bf5af57b4ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selected_mat: {fileID: 2100000, guid: 2c064cef40ce7c64a9735a9e60abe048, type: 2}
   healthCap: 1000
   healthCurrent: 1000
   hpBarUi: {fileID: 0}

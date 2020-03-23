@@ -72,11 +72,7 @@ public class FlockingUnit : Unit {
         // The leader wanders, or seeks if a point is selected
         // Followers use the Arrive behaviour, arriving at a point behind the leader
 
-        // At every step, calculate forces
-        // 1. Force towards target position - steering behaviour
-        // 2. Seperation force - move away from other units
-        // 3. Cohesion force - point in the average direction
-        // 4. Alignment force - move towards center of group
+
 
 
         switch (currentBehaviour)
@@ -112,7 +108,7 @@ public class FlockingUnit : Unit {
                 break;
             case SteeringBehaviour.ARRIVAL:
                 int rng = rnd.Next(1, 100);
-                Debug.Log("RNG: " + rng);
+                //Debug.Log("RNG: " + rng);
                 if (rng < 5)
                 {
                     currentBehaviour = SteeringBehaviour.WANDER;
@@ -130,28 +126,12 @@ public class FlockingUnit : Unit {
                 steeringForce = offset.normalized * (distance / 2);
                 break;
         }
-        /*if (isLeader)
-        {
-            if (seeking)
-            {
-                //seek
-                steeringForce = targetPos - transform.position;
-            }
-            else
-            {
-                //wander
-                steeringForce = transform.forward;
-            }
-        }
 
-        else
-        {
-            // arrive
-            targetPos = leader.transform.position - followDistance * leader.transform.forward;
-            Vector3 offset = targetPos - transform.position;
-            float distance = Vector3.Magnitude(offset);
-            steeringForce = offset.normalized * (distance / 2);
-        }*/
+        // At every step, calculate forces
+        // 1. Force towards target position - steering behaviour
+        // 2. Seperation force - move away from other units
+        // 3. Cohesion force - point in the average direction
+        // 4. Alignment force - move towards center of group
 
         // Look at nearby units - calculate important variables
         foreach (GameObject neighbour in units)

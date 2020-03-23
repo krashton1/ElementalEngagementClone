@@ -205,6 +205,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Knight Warrior
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c1ece6a75c5792b44994826b829185a5, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c1ece6a75c5792b44994826b829185a5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -215,7 +219,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c1ece6a75c5792b44994826b829185a5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.75
+      value: -0.059
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c1ece6a75c5792b44994826b829185a5, type: 3}
       propertyPath: m_LocalRotation.x

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2134293797239360850}
   m_Layer: 9
   m_Name: Structure_MiningCamp
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,7 +46,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc97ec7f973c35646a1c9bf5af57b4ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selected_mat: {fileID: 0}
   healthCap: 100
   healthCurrent: 100
   hpBarUi: {fileID: 0}

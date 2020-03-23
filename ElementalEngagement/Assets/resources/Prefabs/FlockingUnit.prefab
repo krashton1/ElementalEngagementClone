@@ -124,7 +124,7 @@ MonoBehaviour:
   healthCurrent: 0
   hpBarUi: {fileID: 0}
   entityName: Follower
-  speed: 1
+  maxSpeed: 2
   isLeader: 0
   leader: {fileID: 0}
   followDistance: 2
@@ -133,9 +133,12 @@ MonoBehaviour:
   maxForce: 3
   alignWeight: 1
   cohesionWeight: 1
-  seperateWeight: 1
+  seperateWeight: 1.42
   steeringWeight: 2
-  seperationRadius: 0.5
+  seperationRadius: 0.65
+  currentBehaviour: 0
+  seeking: 0
+  targetPos: {x: 0, y: 0, z: 0}
 --- !u!1 &2660069818781735000
 GameObject:
   m_ObjectHideFlags: 0
