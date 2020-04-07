@@ -5,12 +5,12 @@ using UnityEngine;
 public class PlayerBehaviour : MonoBehaviour
 {
 
-	private int mGold = 5;
+	private int mGold = 15;
 	private int mMana = 10;
 	private int mPopulation = 0;
 
-	private int mGoldCap = 10;
-	private int mManaCap = 20;
+	private int mGoldCap = 10000;
+	private int mManaCap = 100;
 	private int mPopulationCap = 5;
 
 
@@ -30,10 +30,10 @@ public class PlayerBehaviour : MonoBehaviour
 		{
 			mElapsedTime = mElapsedTime % 1.0f;
 
-			if(mGold<mGoldCap)
+			/*if(mGold<mGoldCap)
 			{
 				mGold++;
-			}
+			}*/
 
 			if (mMana < mManaCap)
 			{

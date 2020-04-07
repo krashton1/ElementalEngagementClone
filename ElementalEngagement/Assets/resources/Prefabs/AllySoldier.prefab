@@ -85,7 +85,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 67320c5fef9ec584e8f40e0c65d136e6,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67320c5fef9ec584e8f40e0c65d136e6, type: 3}
@@ -186,7 +186,8 @@ PrefabInstance:
       propertyPath: eraseRenderer
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9102316061203670210, guid: 61e28f6363c4cc3469b4323c1a5841d3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 61e28f6363c4cc3469b4323c1a5841d3, type: 3}
 --- !u!4 &5716534965823439199 stripped
 Transform:
@@ -208,6 +209,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: c1ece6a75c5792b44994826b829185a5, type: 3}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: c1ece6a75c5792b44994826b829185a5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: c1ece6a75c5792b44994826b829185a5, type: 3}
       propertyPath: m_LocalPosition.x

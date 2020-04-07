@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+// Input Manager
+// Detects mouse inputs and selects entities
+// When a unit is selected, mouse events are delegated to the appropriate unit class
+
+
 class InputManager : MonoBehaviour {
     private IList<Entity> selected;
     private Vector3 mouse_one_pressed;
@@ -56,12 +61,6 @@ class InputManager : MonoBehaviour {
     void HandleMouseOneEvent()
     {
         RaycastHit hit;
-        /*if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 250.0f, LayerMask.GetMask("Building")))
-        {
-            ActivateBulding(hit.transform.gameObject, hit.point);
-            DeselectGO();
-        }*/
-
         // Stop checking MouseDown if the mouse is over a UI element
         if (EventSystem.current.IsPointerOverGameObject())
         {
@@ -78,20 +77,6 @@ class InputManager : MonoBehaviour {
 
     }
 
-   /*  private void ActivateBulding(GameObject GO, Vector3 V)
-    {
-        GO.GetComponent<UnitSpawner>().SpawnEntity();
-    } */
-
-    private void SetTarget(GameObject GO)
-    {
-        foreach (Entity U in selected)
-        {
-            MoveablePiece MP = (MoveablePiece)U;
-            MP.SetTarget(GO);
-        }
-    }
-
     private void target(RaycastHit hit, Entity.TypeOfTarget type){
         foreach (Entity E in selected)
         {
@@ -102,22 +87,22 @@ class InputManager : MonoBehaviour {
     void HandleMouseTwoEvent()
     {
         RaycastHit hit;
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 250.0f, LayerMask.GetMask("Enemy")))
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 250.0f, LayerMask.GetMask("Enemy"))
+        || Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 250.0f, LayerMask.GetMask("Choosable")))
         {
-            //SetTarget(hit.transform.gameObject);
             target(hit, Entity.TypeOfTarget.Entity);
         }
         else if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 250.0f, LayerMask.GetMask("Ground")))
         {
-            //MoveSelected(hit.point);
             target(hit, Entity.TypeOfTarget.GroundPosition);
         }
+
     }
 
     void SelectGO(GameObject GO)
     {
         Entity en = GO.GetComponent<Entity>();
-        Debug.Log(GO.name);
+        //Debug.Log(GO.name);
         if (!selected.Contains(en))
         {
             en.setSelected(true);
@@ -129,12 +114,7 @@ class InputManager : MonoBehaviour {
                 ui.selectMany(selected.Count);
             }
         }
-       /*  else
-        {
-            DeselectGO();
-            selected.Add(en);
-        } */
-    }
+     }
 
     void BoxSelectGO()
     {
@@ -148,19 +128,6 @@ class InputManager : MonoBehaviour {
             Vector3 cameraPoint = Camera.main.WorldToScreenPoint(GO.transform.position);
             if (max.x > cameraPoint.x && min.x < cameraPoint.x && max.y > cameraPoint.y && min.y < cameraPoint.y)
             {
-                /*MoveablePiece MP = GO.GetComponent<MoveablePiece>();
-                MP.setSelected(true);
-                if ((empty || Input.GetKey("left ctrl")) && !selected.Contains(MP))
-                {
-                    selected.Add(MP);
-                }
-                else
-                {
-                    DeselectGO();
-                    selected.Clear();
-                    selected.Add(MP);
-                    empty = true;
-                }*/
                 SelectGO(GO);
             }
         }
@@ -171,26 +138,11 @@ class InputManager : MonoBehaviour {
     {
         if (drawBox)
         {
-            //           Vector2 max = new Vector2(Mathf.Max(mouse_one_pressed.x, Input.mousePosition.x), Mathf.Max(mouse_one_pressed.y, Input.mousePosition.y));
-            //            Vector2 min = new Vector2(Mathf.Min(mouse_one_pressed.x, Input.mousePosition.x), Mathf.Min(mouse_one_pressed.y, Input.mousePosition.y));
             Rect boxArea = new Rect(new Vector2(mouse_one_pressed.x, Screen.height - mouse_one_pressed.y), new Vector2(Input.mousePosition.x - mouse_one_pressed.x, mouse_one_pressed.y - Input.mousePosition.y));
-
-            //Debug.Log(mouse_one_pressed);
-            //Debug.Log(Input.mousePosition);
-            //Debug.Log(boxArea);
-
             GUI.DrawTexture(boxArea, box_select_texture);
         }
     }
 
-    void MoveSelected(Vector3 V)
-    {
-        foreach (Unit U in selected)
-        {
-            MoveablePiece MP = (MoveablePiece)U;
-            MP.SetFuturePosition(V);
-        }
-    }
 
     void DeselectGO()
     {

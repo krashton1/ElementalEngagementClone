@@ -53,18 +53,18 @@ public class PlayerUI : MonoBehaviour
       setEntityPanelEnabled(true);
       selectedEntity = entity;
       EntityPanel.transform.Find("NameText").GetComponent<Text>().text = entity.entityName;
-      if (entity.gameObject.GetComponent<AbilityContainer>()){
-        setAbilitiesPanelEnabled(true);
-        foreach (Ability a in entity.gameObject.GetComponent<AbilityContainer>().GetAbilities()){
-          GameObject b = GameObject.Instantiate(abilityButtonPrefab, Vector3.zero, Quaternion.identity, AbilitiesPanel.transform);
 
-          //GameObject buttonObj = GameObject.Instantiate(buttonPrefab, Vector3.zero, Quaternion.identity);
-            b.GetComponentInChildren<Text>().text = a.getName();
-            //buttonObj.transform.SetParent(cv.transform, false);
-            //RectTransform rect = buttonObj.GetComponent<RectTransform>();
-            //rect.anchoredPosition = new Vector2(i * 160 + i * 15, 0); 
-            //Button button = buttonObj.GetComponent<Button>();
-            b.GetComponent<Button>().onClick.AddListener(delegate{a.invoke(selectedEntity.gameObject);});
+      // Display the ability panel
+ 
+      if (entity.gameObject.GetComponent<AbilityContainer>()){
+        if (entity.gameObject.GetComponent<AbilityContainer>().enabled){
+          setAbilitiesPanelEnabled(true);
+          foreach (Ability a in entity.gameObject.GetComponent<AbilityContainer>().GetAbilities()){
+            GameObject b = GameObject.Instantiate(abilityButtonPrefab, Vector3.zero, Quaternion.identity, AbilitiesPanel.transform);
+
+              b.GetComponentInChildren<Text>().text = a.getName();
+              b.GetComponent<Button>().onClick.AddListener(delegate{a.invoke(selectedEntity.gameObject);});
+          }
         }
       }
       healthSlider.gameObject.SetActive(true);

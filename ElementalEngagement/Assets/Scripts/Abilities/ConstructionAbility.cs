@@ -31,11 +31,8 @@ public class ConstructionAbility : Ability
         
 
         GameObject newStructure = GameObject.Instantiate(prefab, Vector3.zero, Quaternion.identity);
-        if (Random.value < 0.5f) {
-            newStructure.transform.Rotate(new Vector3(0, -90, 0));
-        }
         Structure s = newStructure.GetComponent<Structure>();
-        newStructure.name = s.type + newStructure.GetInstanceID();
+        s.Create();
         Vector2 pos = controller.getSelectedPosition();
         s.setGridPosition(pos);
         newStructure.transform.position = controller.placeStructureAt(s, (int)pos.x, (int)pos.y);

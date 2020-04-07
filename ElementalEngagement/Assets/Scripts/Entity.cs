@@ -14,8 +14,8 @@ public class Entity : MonoBehaviour
     protected bool selected = false;
 
 
-    public int healthCap = 100;
-    public int healthCurrent;
+    public float healthCap = 100;
+    public float healthCurrent;
     public Slider hpBarUi;
     public string entityName;
 
