@@ -15,6 +15,8 @@ public class MapGenerator : MonoBehaviour
 
     public float startingAreaRadius = 15;
 
+    public int Ore_Amount = 25;
+
     float[,] noiseMap;
 
     // Start is called before the first frame update
@@ -53,10 +55,45 @@ public class MapGenerator : MonoBehaviour
         }
 
 
+        List<Vector2> orePositions = PoissonDiscSampling.GeneratePoints(25, new Vector2(grid.width, grid.height));
+
+        for (int i = 0; i < orePositions.Count; i++){
+            if (i >= Ore_Amount) break;
+            if (grid.getTileAt(orePositions[i].x, orePositions[i].y).isEmpty()){
+                GenerateOrePatch(grid, (int)orePositions[i].x, (int)orePositions[i].y);
+            }
+        }
+
+
         //Build nav mesh
         surface.BuildNavMesh();
 
     }
 
+
+    void GenerateOrePatch(MapGrid grid, int x_, int y_){
+
+        int patchSize = Random.Range(3, 6);
+
+        for (int i = 0; i < patchSize; i++)
+        {
+            int x, y;
+            x = x_ + Random.Range(-1,1);
+            y = y_ + Random.Range(-1,1);
+            x = Mathf.Clamp(x, 0, 150);
+            y = Mathf.Clamp(y, 0, 150);
+            if (grid.getTileAt(x, y).isEmpty()){
+                    GameObject ore = GameObject.Instantiate(Prefab_Gold,Vector3.zero, Quaternion.Euler(0,Random.Range(0, 359),0));
+                    ore.transform.position = grid.placeStructureAt(ore.GetComponent<Structure>(), x, y);
+                    ore.name = "OreDeposit" + x + y + "_" + i;
+                    ore.transform.SetParent(transform);
+                } 
+        }
+
+        
+
+        
+
+    }
 
 }

@@ -71,7 +71,6 @@ public class MapGrid : MonoBehaviour
     public Vector3 placeStructureAt(Structure newStructure, int x, int y){
         int w = (int)newStructure.dimensions.x;
         int h = (int)newStructure.dimensions.y;
-
         for (int i = 0; i < w; i++){
             for (int j = 0; j < h; j++){
                     getTileAt(x+i, y+j).setStructure(newStructure);

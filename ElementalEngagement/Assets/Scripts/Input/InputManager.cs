@@ -103,6 +103,7 @@ class InputManager : MonoBehaviour {
     {
         Entity en = GO.GetComponent<Entity>();
         //Debug.Log(GO.name);
+        if(!en) return;
         if (!selected.Contains(en))
         {
             en.setSelected(true);

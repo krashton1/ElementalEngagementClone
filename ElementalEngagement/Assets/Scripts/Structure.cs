@@ -25,13 +25,14 @@ public class Structure : Entity
 
     }
 
-    public virtual int Work(float w){
+    public virtual bool Work(float w){
         healthCurrent += w;
         if (healthCurrent >= healthCap){
             healthCurrent = healthCap;
             if (!finished) OnConstructionFinish();
+            return true;
         }
-        return 0;
+        return false;
     }
 
     void OnConstructionFinish(){

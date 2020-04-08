@@ -1,7 +1,7 @@
-# Blender MTL File: 'construction_large.blend'
+# Blender MTL File: 'None'
 # Material Count: 5
 
-newmtl Crates
+newmtl Crates.001
 Ns 225.000000
 Ka 1.000000 1.000000 1.000000
 Kd 0.121164 0.079560 0.059444
@@ -11,7 +11,7 @@ Ni 1.450000
 d 1.000000
 illum 2
 
-newmtl LightWood
+newmtl LightWood.001
 Ns 225.000000
 Ka 1.000000 1.000000 1.000000
 Kd 0.295692 0.163787 0.096665
@@ -21,7 +21,7 @@ Ni 1.450000
 d 1.000000
 illum 2
 
-newmtl Metal
+newmtl Metal.002
 Ns 225.000000
 Ka 1.000000 1.000000 1.000000
 Kd 0.102474 0.102474 0.102474
@@ -31,7 +31,7 @@ Ni 1.450000
 d 1.000000
 illum 2
 
-newmtl Rope
+newmtl Rope.002
 Ns 225.000000
 Ka 1.000000 1.000000 1.000000
 Kd 0.218894 0.120673 0.044073
@@ -41,7 +41,7 @@ Ni 1.450000
 d 1.000000
 illum 2
 
-newmtl Stone
+newmtl Stone.001
 Ns 225.000000
 Ka 1.000000 1.000000 1.000000
 Kd 0.233016 0.233016 0.233016

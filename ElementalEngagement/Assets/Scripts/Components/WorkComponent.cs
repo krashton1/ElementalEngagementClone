@@ -28,7 +28,14 @@ public class WorkComponent : MonoBehaviour
     {
         if (target){
             if(Vector2.Distance(transform.position, target.transform.position) < target.dimensions.magnitude + workingRange + 0.5f){
-                resourceCount += target.Work(workSpeed * Time.deltaTime);
+                    anim.SetTrigger("Attack1Trigger");
+                if( target.Work(workSpeed * Time.deltaTime)){
+                    anim.ResetTrigger("Attack1Trigger");
+                }
+               
+            }
+            else{
+                anim.ResetTrigger("Attack1Trigger");
             }
         }
     }

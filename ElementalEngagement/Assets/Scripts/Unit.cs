@@ -59,11 +59,19 @@ public class Unit : Entity {
             }
 
         }
+
+        if (anim){
+            if (nav.remainingDistance < 0.25f){
+                anim.SetBool("Moving", false);
+            }
+            else{
+                anim.SetBool("Moving", true);
+            }
+        }
     }
 
     // These target handlers are inherited from entity
     override public void targetEntity(GameObject target){
-        Debug.Log("Test");
         AttackComponent a = gameObject.GetComponent<AttackComponent>();
         if (a) {
             stopRange = a.SetTarget(target);
@@ -89,7 +97,6 @@ public class Unit : Entity {
     {
         nav.destination = V;
 		targetObject = null;
-		
     }
 
     public void SetTarget(GameObject GO)
