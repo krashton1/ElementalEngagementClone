@@ -49,6 +49,7 @@ public class MapController : MonoBehaviour
             }
             if (Input.GetMouseButtonDown(0) && isSelectionValid){
                 tileSelectionEvent.Invoke();
+                if (!Input.GetKey("left ctrl")&& !Input.GetKey("left shift"))
                 endTileSelection();
             }
             if (Input.GetMouseButtonDown(1)){
@@ -58,18 +59,17 @@ public class MapController : MonoBehaviour
     }
 
     public void beginTileSelection(int width, int height){
-        w = width;
-        h = height;
-        state = StateEnum.selectingTile;
-        print("w " +w+", h "+h);
-        for (int i = 0; i < width; i++){
-            for (int j = 0; j < height; j++){
-                GameObject tileSelector = GameObject.Instantiate(tileSelectorPrefab, Vector3.zero, Quaternion.identity);
-                tileSelector.name = "TileSelector" + i + "-" + j;
-                tileSelectors.Add(tileSelector);
+            w = width;
+            h = height;
+            state = StateEnum.selectingTile;
+            for (int i = 0; i < width; i++){
+                for (int j = 0; j < height; j++){
+                    GameObject tileSelector = GameObject.Instantiate(tileSelectorPrefab, Vector3.zero, Quaternion.identity);
+                    tileSelector.name = "TileSelector" + i + "-" + j;
+                    tileSelectors.Add(tileSelector);
+                }
             }
-        }
-
+        
     }
 
     void endTileSelection(){

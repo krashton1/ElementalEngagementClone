@@ -41,8 +41,8 @@ public class Projectile : MonoBehaviour {
     {
         if (!C.gameObject.Equals(parent))
         {
-            Unit U = C.gameObject.GetComponent<Unit>();
-            U.Damage(damage);
+            Entity E = C.gameObject.GetComponent<Entity>();
+            E.Damage(damage);
             Destroy(gameObject);
         }
     }

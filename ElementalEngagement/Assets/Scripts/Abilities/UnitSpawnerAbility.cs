@@ -14,7 +14,7 @@ public class UnitSpawnerAbility : Ability
         resourceManager = resources_;
     }
 
-    public override void invoke(GameObject source){
+    public override void invoke(GameObject source, bool repeated=false){
        if(resourceManager.getPopulation() < resourceManager.getPopulationCap()
        && resourceManager.getMana() >= cost.mana && resourceManager.getGold() >= cost.gold)
 		{

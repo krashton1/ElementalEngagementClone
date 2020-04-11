@@ -26,14 +26,9 @@ public class PlayerBehaviour : MonoBehaviour
     void Update()
     {
 		mElapsedTime += Time.deltaTime;
-		if(mElapsedTime>=1.0f)
+		if(mElapsedTime>=5.0f)
 		{
-			mElapsedTime = mElapsedTime % 1.0f;
-
-			/*if(mGold<mGoldCap)
-			{
-				mGold++;
-			}*/
+			mElapsedTime = mElapsedTime % 5.0f;
 
 			if (mMana < mManaCap)
 			{
@@ -81,6 +76,10 @@ public class PlayerBehaviour : MonoBehaviour
 	public int getPopulationCap()
 	{
 		return mPopulationCap;
+	}
+
+	public void addPopulationCap(int i){
+		mPopulationCap += i;
 	}
 
 	public void addGold(int i){

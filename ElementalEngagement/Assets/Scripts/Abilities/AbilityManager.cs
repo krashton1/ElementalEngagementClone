@@ -21,9 +21,11 @@ public class AbilityManager : MonoBehaviour
         abilities.Add("construction_Pylon", new ConstructionAbility((GameObject) Resources.Load("Prefabs/Structures/Structure_Pylon", typeof(GameObject)), controller, resourceManager, "Build Pylon", 2, 2));
         abilities.Add("construction_Barracks", new ConstructionAbility((GameObject) Resources.Load("Prefabs/Structures/Structure_Barracks", typeof(GameObject)), controller, resourceManager, "Build Barracks", 3));
         abilities.Add("construction_MiningCamp", new ConstructionAbility((GameObject) Resources.Load("Prefabs/Structures/Structure_MiningCamp", typeof(GameObject)), controller, resourceManager, "Build Mining Camp", 3));
+        abilities.Add("construction_Wall", new ConstructionAbility((GameObject) Resources.Load("Prefabs/Structures/Structure_Wall", typeof(GameObject)), controller, resourceManager, "Build Wall", 0, 0));       
         abilities.Add("unit_Worker", new UnitSpawnerAbility((GameObject) Resources.Load("Prefabs/AllyWorker", typeof(GameObject)), resourceManager, "Train Worker", 3));
         abilities.Add("unit_Soldier", new UnitSpawnerAbility((GameObject) Resources.Load("Prefabs/AllySoldier", typeof(GameObject)), resourceManager, "Train Soldier", 3));
         abilities.Add("unit_Ranger", new UnitSpawnerAbility((GameObject) Resources.Load("Prefabs/AllyRanger", typeof(GameObject)), resourceManager, "Train Ranger", 3));
+        abilities.Add("debug_SuperWorker", new UnitSpawnerAbility((GameObject) Resources.Load("Prefabs/SuperWorker", typeof(GameObject)), resourceManager, "Train SuperWorker (Debug)", 0));
 
     }
 }

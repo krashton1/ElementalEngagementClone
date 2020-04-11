@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 5513581095943046857}
   - component: {fileID: 1380496400274493531}
   - component: {fileID: 2134293797239360850}
+  - component: {fileID: 6116488068963921415}
   m_Layer: 9
   m_Name: Structure_MiningCamp
   m_TagString: Player
@@ -70,6 +71,7 @@ MonoBehaviour:
   dimensions: {x: 2, y: 2}
   type: Mining Camp
   finished: 0
+  resource: {fileID: 0}
 --- !u!208 &1380496400274493531
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -99,6 +101,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.1145658, y: 1.1339912, z: 2.097476}
   m_Center: {x: 0.1179204, y: 0.5361457, z: -0.008187056}
+--- !u!114 &6116488068963921415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5090493539155112544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06028cb80c61c0948952ad425a4b6df1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourceCount: 200
+  timeToGather: 5
+  gatherPoint: 0
+  dropoffPoint: 1
 --- !u!114 &2529550875846811819
 MonoBehaviour:
   m_ObjectHideFlags: 0
