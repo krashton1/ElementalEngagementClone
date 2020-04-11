@@ -8,6 +8,7 @@ TagManager:
   - Default Model
   - Construction Model
   - Alt Model
+  - Home Base
   layers:
   - Default
   - TransparentFX

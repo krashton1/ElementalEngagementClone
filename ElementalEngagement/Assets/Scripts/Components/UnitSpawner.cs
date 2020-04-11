@@ -6,9 +6,6 @@
 
 
 public class UnitSpawner : MonoBehaviour {
-    
-
-
     public Vector3 offset;
     public Vector3 waypoint;
     bool waypointSet = false;
@@ -18,9 +15,11 @@ public class UnitSpawner : MonoBehaviour {
         waypoint = V;
     }
 
-    public void onUnitSpawn(GameObject unit){
+    public void onUnitSpawn(GameObject unit)
+    {
         unit.transform.Translate(offset);
-        if (waypointSet){
+        if (waypointSet)
+        {
             Unit move = unit.GetComponent<Unit>();
             if (move) move.SetFuturePosition(waypoint);
         }

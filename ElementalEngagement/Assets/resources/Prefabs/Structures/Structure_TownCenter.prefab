@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 4054244408498589815}
   m_Layer: 9
   m_Name: Structure_TownCenter
-  m_TagString: Player
+  m_TagString: Home Base
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
