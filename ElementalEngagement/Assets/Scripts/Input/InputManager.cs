@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System;
 
 // Input Manager
 // Detects mouse inputs and selects entities
@@ -27,7 +28,29 @@ class InputManager : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        CheckSelectedUnits();
         HandleInput();
+    }
+
+    private void CheckSelectedUnits()
+    {
+        IList<Entity> to_remove = new List<Entity>();
+
+        foreach (Entity E in selected)
+        {
+            if (E == null)
+            {
+                to_remove.Add(E);
+            }
+        }
+
+        foreach (Entity E in to_remove)
+        {
+            if (E == null)
+            {
+                selected.Remove(E);
+            }
+        }
     }
 
     void HandleInput()
@@ -70,7 +93,7 @@ class InputManager : MonoBehaviour {
         {
             return;
         }
-        if (selected != null && !Input.GetKey("left ctrl")&& !Input.GetKey("left shift"))
+        if (selected != null && !Input.GetKey("left ctrl") && !Input.GetKey("left shift"))
         {
             DeselectGO();
         }
@@ -81,19 +104,23 @@ class InputManager : MonoBehaviour {
 
     }
 
-    private void target(RaycastHit hit, Entity.TypeOfTarget type){
+    private void target(RaycastHit hit, Entity.TypeOfTarget type)
+    {
         foreach (Entity E in selected)
         {
             E.handleReceiveTarget(hit, type);
         }
     }
 
-    void deleteSelected(){
-        for (int i = selected.Count -1; i >= 0; i --)
+    void deleteSelected()
+    {
+        for (int i = selected.Count - 1; i >= 0; i--)
         {
             Entity E = selected[i];
-            if (E.CompareTag("Player")){
-                if (E.entityName != "Town Center"){
+            if (E.CompareTag("Player"))
+            {
+                if (E.entityName != "Town Center")
+                {
                     E.Delete();
                     selected.RemoveAt(i);
                 }
@@ -120,19 +147,21 @@ class InputManager : MonoBehaviour {
     {
         Entity en = GO.GetComponent<Entity>();
         //Debug.Log(GO.name);
-        if(!en) return;
+        if (!en) return;
         if (!selected.Contains(en))
         {
             en.setSelected(true);
             selected.Add(en);
-            if (selected.Count == 1){
+            if (selected.Count == 1)
+            {
                 ui.setSelectedEntity(en);
             }
-            else if (selected.Count > 1){
+            else if (selected.Count > 1)
+            {
                 ui.selectMany(selected.Count);
             }
         }
-     }
+    }
 
     void BoxSelectGO()
     {
