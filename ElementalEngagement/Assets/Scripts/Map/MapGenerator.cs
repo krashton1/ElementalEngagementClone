@@ -12,7 +12,7 @@ public class MapGenerator : MonoBehaviour
     public GameObject Prefab_Gold;
     public NavMeshSurface surface;
     public float noiseScale = 0.3f;
-
+    public float noiseCutoff = 0.25f;
     public float startingAreaRadius = 15;
 
     public int Ore_Amount = 25;
@@ -37,16 +37,16 @@ public class MapGenerator : MonoBehaviour
         Camera.main.GetComponent<CameraController>().position = TownCenter.transform.position - new Vector3(15, 0, 15);
 
 
-
+        // Generate Trees
         for (int i = 0; i < grid.width; i ++){
             for (int j = 0; j < grid.height; j++)
             {
                 if (Vector2.Distance(new Vector2(i, j), new Vector2(x, y)) < startingAreaRadius) continue;
-                if (noiseMap[i,j] < 0.25f){
+                if (noiseMap[i,j] < noiseCutoff){
                     GameObject tree = GameObject.Instantiate(Prefab_Tree,Vector3.zero, Quaternion.Euler(0,Random.Range(0, 359),0));
                     tree.transform.position = grid.placeStructureAt(tree.GetComponent<Structure>(), i, j);
                     tree.name = "Tree" + i + j;
-                    float s = 1.25f - noiseMap[i,j] * 3;
+                    float s = 1.25f - noiseMap[i,j] * 2;
                     tree.transform.localScale = new Vector3(s,s,s);
                     tree.transform.SetParent(transform);
 
@@ -54,13 +54,27 @@ public class MapGenerator : MonoBehaviour
             }
         }
 
-
+        // Generate Ore
         List<Vector2> orePositions = PoissonDiscSampling.GeneratePoints(25, new Vector2(grid.width, grid.height));
 
         for (int i = 0; i < orePositions.Count; i++){
             if (i >= Ore_Amount) break;
+            if (Vector2.Distance(orePositions[i], new Vector2(x, y)) < startingAreaRadius) continue;
             if (grid.getTileAt(orePositions[i].x, orePositions[i].y).isEmpty()){
                 GenerateOrePatch(grid, (int)orePositions[i].x, (int)orePositions[i].y);
+            }
+        }
+
+        // Generete 3 ore patches in starting area
+        for (int i = 0; i < 3;){
+
+            //randomly select points around the town center
+            int a = x + (int) ((Random.Range(0,2)*2-1) * Random.Range(6, startingAreaRadius));
+            int b = y + (int) ((Random.Range(0,2)*2-1) * Random.Range(6, startingAreaRadius));
+
+            if (grid.getTileAt(a, b).isEmpty()){
+                GenerateOrePatch(grid, a, b);
+                i++;
             }
         }
 
@@ -71,11 +85,12 @@ public class MapGenerator : MonoBehaviour
     }
 
 
+    // Generate an ore patch of varying size
     void GenerateOrePatch(MapGrid grid, int x_, int y_){
 
         int patchSize = Random.Range(3, 6);
-
-        for (int i = 0; i < patchSize; i++)
+        int j = 0; // sloppy protection against infinite loops
+        for (int i = 0; i < patchSize;)
         {
             int x, y;
             x = x_ + Random.Range(-1,1);
@@ -87,7 +102,10 @@ public class MapGenerator : MonoBehaviour
                     ore.transform.position = grid.placeStructureAt(ore.GetComponent<Structure>(), x, y);
                     ore.name = "OreDeposit" + x + y + "_" + i;
                     ore.transform.SetParent(transform);
-                } 
+                    i++;
+                }
+            j++;
+            if (j >= 10) break;
         }
 
         

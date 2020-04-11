@@ -32,6 +32,17 @@ public class PlayerUI : MonoBehaviour
       if (selectedEntity){
         healthText.text = selectedEntity.healthCurrent.ToString() + " / " + selectedEntity.healthCap.ToString();
         healthSlider.value = (float)selectedEntity.healthCurrent / selectedEntity.healthCap;
+        GameObject resourceText = EntityPanel.transform.Find("ResourceText").gameObject;
+        if (resourceText.activeSelf){
+        if (selectedEntity.GetComponent<WorkComponent>()){
+            resourceText.GetComponent<Text>().text = "Carrying " + selectedEntity.GetComponent<WorkComponent>().resourceCount.ToString() + " ore.";
+        }
+        else {
+          if (selectedEntity.GetComponent<ManaPylon>()){
+            resourceText.GetComponent<Text>().text = "Generating 1 mana / " + selectedEntity.GetComponent<ManaPylon>().manaRate.ToString() + " s.";
+          }
+        }
+        }
       }
 		  gold_text.text = "Gold: " + mPlayer.getGold() + "/" + mPlayer.getGoldCap();
 		  mana_text.text = "Mana: " + mPlayer.getMana() + "/" + mPlayer.getManaCap();
@@ -53,7 +64,21 @@ public class PlayerUI : MonoBehaviour
       setEntityPanelEnabled(true);
       selectedEntity = entity;
       EntityPanel.transform.Find("NameText").GetComponent<Text>().text = entity.entityName;
+      GameObject resourceText = EntityPanel.transform.Find("ResourceText").gameObject;
+      WorkComponent w = entity.GetComponent<WorkComponent>();
+      ManaPylon m = entity.GetComponent<ManaPylon>();
 
+      if (w){
+        resourceText.SetActive(true);
+        resourceText.GetComponent<Text>().text = "Carrying " + w.resourceCount.ToString() + " ore.";
+      }
+      else if (m) {
+        resourceText.SetActive(true);
+        resourceText.GetComponent<Text>().text = "Generating 1 mana / " + m.manaRate.ToString() + " s.";
+      }
+      else{
+        resourceText.SetActive(false);
+      }
       // Display the ability panel
  
       if (entity.gameObject.GetComponent<AbilityContainer>()){

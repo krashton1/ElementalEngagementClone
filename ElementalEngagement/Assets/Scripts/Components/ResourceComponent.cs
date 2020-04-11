@@ -4,18 +4,32 @@ using UnityEngine;
 
 public class ResourceComponent : MonoBehaviour
 {
-    public int resourceCount;
-    public float timeToGather = 5;
+    public int resourceCount = 200;
+    public float timeToGather = 100; // base worker speed is 25
     float gatherTimer = 0;
 
+    public bool gatherPoint = false;
+    public bool dropoffPoint = false;
 
-    public int gather(float work){
+
+    public Structure.WorkReturnCode gather(float work){
         gatherTimer += work;
         if (gatherTimer >= timeToGather){
             gatherTimer = 0;
             resourceCount--;
-            return 1;
+            gameObject.GetComponent<Entity>().Damage(1);
+            if (resourceCount == 0) return Structure.WorkReturnCode.Exhausted;
+            else return Structure.WorkReturnCode.GiveOre;
         }
-        return 0;
+        return Structure.WorkReturnCode.None;
     }
+
+    public bool isDropoffPoint(){
+        return dropoffPoint;
+    }
+ 
+    public bool isExhausted(){
+        return resourceCount == 0;
+    }
+    
 }

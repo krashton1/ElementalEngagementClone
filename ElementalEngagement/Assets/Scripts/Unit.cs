@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class Unit : Entity {
     // Start is called before the first frame update
-    public float speed = 1.0f;
     private NavMeshAgent nav;
     public float stopRange = 1.0f;
     public GameObject targetObject;
@@ -61,7 +60,7 @@ public class Unit : Entity {
         }
 
         if (anim){
-            if (nav.remainingDistance < 0.25f){
+            if (nav.remainingDistance < 0.5f){
                 anim.SetBool("Moving", false);
             }
             else{
@@ -90,6 +89,12 @@ public class Unit : Entity {
 
     override public void targetPosition(Vector3 point){
         SetFuturePosition(point);
+
+    
+        WorkComponent w = gameObject.GetComponent<WorkComponent>();
+        if (w) {
+            w.unsetTarget();
+        }
     }
 
 

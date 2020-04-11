@@ -26,4 +26,9 @@ public class Tile
         structure = s;
         empty = false;
     }
+
+    public void clear(){
+        structure = null;
+        empty = true;
+    }
 }

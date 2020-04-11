@@ -1,5 +1,21 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &6593864056003949337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439944418420365667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbf3575480402db40813e763382412fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  color: 1
+  eraseRenderer: 1
+  originalLayer: 0
+  originalMaterials: []
 --- !u!1 &4911637717585211907
 GameObject:
   m_ObjectHideFlags: 0
@@ -13,7 +29,7 @@ GameObject:
   - component: {fileID: 3543789329551913123}
   - component: {fileID: 3433558039316492456}
   - component: {fileID: 1513113453626511691}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Environment_Gold
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,13 +63,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc97ec7f973c35646a1c9bf5af57b4ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthCap: 100
-  healthCurrent: 100
+  healthCap: 201
+  healthCurrent: 201
   hpBarUi: {fileID: 0}
   entityName: Gold ore
   dimensions: {x: 1, y: 1}
   type: Gold
   finished: 1
+  resource: {fileID: 1513113453626511691}
 --- !u!208 &3543789329551913123
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -95,8 +112,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06028cb80c61c0948952ad425a4b6df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceCount: 100
-  timeToGather: 5
+  resourceCount: 200
+  timeToGather: 100
+  gatherPoint: 1
+  dropoffPoint: 0
 --- !u!1001 &2681709580809610743
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -169,6 +188,12 @@ PrefabInstance:
 --- !u!4 &6939462537829322477 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: f55697dbd20bdce418e6330efffb4be4,
+    type: 3}
+  m_PrefabInstance: {fileID: 2681709580809610743}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &439944418420365667 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2534866581884222612, guid: f55697dbd20bdce418e6330efffb4be4,
     type: 3}
   m_PrefabInstance: {fileID: 2681709580809610743}
   m_PrefabAsset: {fileID: 0}

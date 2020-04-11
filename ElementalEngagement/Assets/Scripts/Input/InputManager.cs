@@ -56,6 +56,10 @@ class InputManager : MonoBehaviour {
         {
             Application.Quit();
         }
+        if (Input.GetKey(KeyCode.Delete))
+        {
+            deleteSelected();
+        }
     }
 
     void HandleMouseOneEvent()
@@ -66,7 +70,7 @@ class InputManager : MonoBehaviour {
         {
             return;
         }
-        if (selected != null && !Input.GetKey("left ctrl"))
+        if (selected != null && !Input.GetKey("left ctrl")&& !Input.GetKey("left shift"))
         {
             DeselectGO();
         }
@@ -81,6 +85,19 @@ class InputManager : MonoBehaviour {
         foreach (Entity E in selected)
         {
             E.handleReceiveTarget(hit, type);
+        }
+    }
+
+    void deleteSelected(){
+        for (int i = selected.Count -1; i >= 0; i --)
+        {
+            Entity E = selected[i];
+            if (E.CompareTag("Player")){
+                if (E.entityName != "Town Center"){
+                    E.Delete();
+                    selected.RemoveAt(i);
+                }
+            }
         }
     }
 

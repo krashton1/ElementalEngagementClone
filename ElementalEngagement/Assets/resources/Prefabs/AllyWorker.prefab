@@ -16,6 +16,10 @@ MonoBehaviour:
   target: {fileID: 0}
   workSpeed: 25
   resourceCap: 10
+  state: 0
+  job: 0
+  senseRange: 15
+  unit: {fileID: 4238228600810308239}
 --- !u!114 &2030733408089506205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34,6 +38,7 @@ MonoBehaviour:
   - construction_Pylon
   - construction_Barracks
   - construction_MiningCamp
+  - construction_Wall
 --- !u!1001 &1207013575312610474
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -248,6 +253,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7876117247519597624}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4238228600810308239 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -2910274662220388681, guid: 61e28f6363c4cc3469b4323c1a5841d3,
+    type: 3}
+  m_PrefabInstance: {fileID: 7876117247519597624}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1377110634853499135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec14624727694804c853413c1709507f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2225595059638500093 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8336004589247946437, guid: 61e28f6363c4cc3469b4323c1a5841d3,
