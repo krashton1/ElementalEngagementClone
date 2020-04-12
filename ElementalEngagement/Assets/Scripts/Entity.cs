@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using cakeslice;
 using UnityEngine.UI;
+using UnityEditor;
 
 public class Entity : MonoBehaviour
 {
@@ -38,6 +39,34 @@ public class Entity : MonoBehaviour
 
     }
     
+	public void setElementType(ElementComponent.ElementType et)
+	{
+		element_type = et;
+
+
+
+		GameObject go;
+
+		switch (et)
+		{
+			case ElementComponent.ElementType.Fire:
+				go = PrefabUtility.InstantiatePrefab(AssetDatabase.LoadMainAssetAtPath("Assets/ErbGameArt/Procedural fire/Prefabs/Magic fire pro red.prefab")) as GameObject;
+				break;
+			case ElementComponent.ElementType.Water:
+				go = PrefabUtility.InstantiatePrefab(AssetDatabase.LoadMainAssetAtPath("Assets/ErbGameArt/Procedural fire/Prefabs/Magic fire pro blue.prefab")) as GameObject;
+				break;
+			case ElementComponent.ElementType.Grass:
+				go = PrefabUtility.InstantiatePrefab(AssetDatabase.LoadMainAssetAtPath("Assets/ErbGameArt/Procedural fire/Prefabs/Magic fire pro green.prefab")) as GameObject;
+				break;
+			default:
+				return;
+		}
+		
+		go.transform.SetParent(this.transform);
+		go.transform.position = this.transform.position;
+		go.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+	}
+	
 
     private void LateUpdate() {
         if (MarkedForDeletion){
