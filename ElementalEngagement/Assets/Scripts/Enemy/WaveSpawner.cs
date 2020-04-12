@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +12,7 @@ public class WaveSpawner : MonoBehaviour {
     public float Spawn_radius = 1.0f;
     public float Spawn_interval = 35.0f;
     public float Min_Spawn_interval = 30.0f;
-    public int Spawn_count = 2;
+    public int Spawn_count = 1;
 
     private float currTimer = 0;
 
@@ -70,7 +69,13 @@ public class WaveSpawner : MonoBehaviour {
             Vector3 spawn = spawn_point + new Vector3 (points[i].x, 0, points[i].y);
             GameObject newEnemy = Instantiate(EnemyGO, spawn, Quaternion.identity);
             BasicEnemy BE = newEnemy.GetComponent<BasicEnemy>();
-
+            if (Spawn_count > 3){
+                ElementComponent.ElementType[] elements = { ElementComponent.ElementType.None,
+                ElementComponent.ElementType.Water,
+                ElementComponent.ElementType.Fire,
+                ElementComponent.ElementType.Grass};
+                BE.setElementType(elements[Random.Range(0,4)]);
+            }
 			BE.SetTarget(HomeBase.gameObject);
         }
     }

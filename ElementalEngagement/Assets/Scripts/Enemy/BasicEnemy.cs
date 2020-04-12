@@ -31,7 +31,6 @@ public class BasicEnemy : Entity {
         anim = GetComponentInChildren<Animator>();
         anim.SetBool("Moving", true);
     }
-	}
 
     // Update is called once per frame
     void Update()
@@ -152,6 +151,7 @@ public class BasicEnemy : Entity {
         }
     }
 }
+
 
 
 

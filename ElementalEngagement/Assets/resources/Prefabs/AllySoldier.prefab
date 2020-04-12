@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd5de9ace86eaf447a781e48228ee910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
+  attack_type: 0
+  element_type: 0
   attack_range: 1
   target: {fileID: 0}
   projectile: {fileID: 0}
@@ -21,6 +22,22 @@ MonoBehaviour:
   current_attack_frame: 0
   senseRange: 20
   unit: {fileID: 7392793916504376110}
+--- !u!114 &253241814026043158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5716534965823439198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306c87651623b454fb68b52b46988359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityNames:
+  - enchant_nature
+  - enchant_fire
+  - enchant_water
 --- !u!1001 &3532188220276155801
 PrefabInstance:
   m_ObjectHideFlags: 0

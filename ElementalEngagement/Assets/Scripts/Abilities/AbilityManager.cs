@@ -26,6 +26,9 @@ public class AbilityManager : MonoBehaviour
         abilities.Add("unit_Soldier", new UnitSpawnerAbility((GameObject) Resources.Load("Prefabs/AllySoldier", typeof(GameObject)), resourceManager, "Train Soldier", 8));
         abilities.Add("unit_Ranger", new UnitSpawnerAbility((GameObject) Resources.Load("Prefabs/AllyRanger", typeof(GameObject)), resourceManager, "Train Ranger", 9));
         abilities.Add("debug_SuperWorker", new UnitSpawnerAbility((GameObject) Resources.Load("Prefabs/SuperWorker", typeof(GameObject)), resourceManager, "(Debug) FastWorker", 0));
+        abilities.Add("enchant_nature", new EnchantAbility( resourceManager, ElementComponent.ElementType.Grass, "Enchant (Grass)", 0, 10));
+        abilities.Add("enchant_fire", new EnchantAbility( resourceManager, ElementComponent.ElementType.Fire, "Enchant (Fire)", 0, 10));
+        abilities.Add("enchant_water", new EnchantAbility( resourceManager, ElementComponent.ElementType.Water, "Enchant (Water)", 0, 10));
 
     }
 }

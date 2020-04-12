@@ -63,8 +63,8 @@ public class AttackComponent : MonoBehaviour
             if (dist.magnitude < attack_range)
             {
                 anim.SetTrigger("Attack1Trigger");
-                if (type == AttackType.Ranged) RangedAttack(dist);
-                else if (type == AttackType.Melee) MeleeAttack();
+                if (attack_type == AttackType.Ranged) RangedAttack(dist);
+                else if (attack_type == AttackType.Melee) MeleeAttack();
             }
             else{
                 anim.ResetTrigger("Attack1Trigger");
