@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 7620895899078764387}
   - component: {fileID: 2684801356058511396}
   - component: {fileID: -6937573209169723436}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: EnemyUnitModel
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -132,6 +132,7 @@ MonoBehaviour:
   healthCurrent: 100
   hpBarUi: {fileID: 4114865415948747097}
   entityName: Unit
+  element_type: 0
   MarkedForDeletion: 0
   stopRange: 1
   targetObject: {fileID: 0}
@@ -151,6 +152,7 @@ MonoBehaviour:
   healthCurrent: 0
   hpBarUi: {fileID: 0}
   entityName: 
+  element_type: 0
   MarkedForDeletion: 0
   speed: 1
   stopRange: 1

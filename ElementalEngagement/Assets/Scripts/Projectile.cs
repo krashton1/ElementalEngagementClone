@@ -7,7 +7,7 @@ public class Projectile : MonoBehaviour {
     public float speed = 0.5f;
     public Vector3 direction;
     private GameObject parent;
-    float lifetime = 2;
+    float lifetime = 1.5f;
 
 	public ElementComponent.ElementType element_type = ElementComponent.ElementType.None;
 
@@ -49,10 +49,10 @@ public class Projectile : MonoBehaviour {
 
     void OnCollisionEnter(Collision C)
     {
-        if (!C.gameObject.Equals(parent))
+        if (C.gameObject.CompareTag("Enemy"))
         {
             Entity E = C.gameObject.GetComponent<Entity>();
-            E.Damage(damage, element_type);
+            if (E) E.Damage(damage, element_type);
             Destroy(gameObject);
         }
     }

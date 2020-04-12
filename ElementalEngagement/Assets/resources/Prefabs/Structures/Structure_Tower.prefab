@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -320107190035202827}
   - component: {fileID: 4749809741152171885}
   - component: {fileID: 3656944181067701450}
+  - component: {fileID: 9023551209512057623}
   m_Layer: 9
   m_Name: Structure_Tower
   m_TagString: Player
@@ -51,6 +52,7 @@ MonoBehaviour:
   healthCurrent: 200
   hpBarUi: {fileID: 0}
   entityName: Watch Tower
+  element_type: 0
   MarkedForDeletion: 0
   dimensions: {x: 2, y: 2}
   type: Tower
@@ -86,6 +88,29 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &9023551209512057623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 694332624947837272}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd5de9ace86eaf447a781e48228ee910, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attack_type: 0
+  element_type: 0
+  attack_range: 12
+  target: {fileID: 0}
+  projectile: {fileID: 7707406984690250330, guid: 18fe8319fc7011c49b8f663192f87ec6,
+    type: 3}
+  attack_damage: 15
+  attack_frame_counter: 90
+  current_attack_frame: 0
+  senseRange: 12
+  unit: {fileID: 0}
 --- !u!114 &5627826991520121914
 MonoBehaviour:
   m_ObjectHideFlags: 0

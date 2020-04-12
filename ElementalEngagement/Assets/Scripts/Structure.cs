@@ -71,11 +71,21 @@ public class Structure : Entity
             m.OnConstruction();
         }
 
+        AttackComponent t = gameObject.GetComponent<AttackComponent>();
+        if (t) {
+            t.enabled = true;
+        }
+
     }
 
     private void OnDestroy() {
         if (GameObject.Find("GroundPlane")){
             GameObject.Find("GroundPlane").GetComponent<MapGrid>().clearTile((int)gridPosition.x, (int)gridPosition.y);
+        }
+        if (type == "TownCenter"){
+            if (GameObject.Find("MainController")){
+                GameObject.Find("MainController").GetComponent<InputManager>().GameOver = true;
+            }
         }
     }
 

@@ -40,12 +40,12 @@ public class AttackComponent : MonoBehaviour
     }
 
     public void lookForTarget(){
-    // Find the nearest structure
+    // Find the nearest enemy
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, senseRange, LayerMask.GetMask("Enemy"));
-
         if (hitColliders.Length > 0){
+            print("Target found");
             target = hitColliders[Random.Range(0, hitColliders.Length)].gameObject;
-            unit.targetEntity(target);
+            if (unit) unit.targetEntity(target);
         }
     }
 
@@ -62,12 +62,12 @@ public class AttackComponent : MonoBehaviour
             Vector3 dist = target.transform.position - transform.position;
             if (dist.magnitude < attack_range)
             {
-                anim.SetTrigger("Attack1Trigger");
+                if (anim) anim.SetTrigger("Attack1Trigger");
                 if (attack_type == AttackType.Ranged) RangedAttack(dist);
                 else if (attack_type == AttackType.Melee) MeleeAttack();
             }
             else{
-                anim.ResetTrigger("Attack1Trigger");
+                if (anim) anim.ResetTrigger("Attack1Trigger");
             }
             current_attack_frame = 0;
 

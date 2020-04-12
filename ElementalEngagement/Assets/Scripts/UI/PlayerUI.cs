@@ -13,6 +13,11 @@ public class PlayerUI : MonoBehaviour
 	public Text population_text;
   public GameObject AbilitiesPanel;
   public GameObject EntityPanel;
+  public Text wave_text;
+  public WaveSpawner waveControl;
+  public Text gameOver_text;
+  bool gameOver =false;
+  float timer = 0;
 
   public GameObject abilityButtonPrefab;
 
@@ -29,6 +34,7 @@ public class PlayerUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      if (!gameOver) timer += Time.deltaTime;
       if (selectedEntity){
         healthText.text = selectedEntity.healthCurrent.ToString() + " / " + selectedEntity.healthCap.ToString();
         healthSlider.value = (float)selectedEntity.healthCurrent / selectedEntity.healthCap;
@@ -47,6 +53,7 @@ public class PlayerUI : MonoBehaviour
 		  gold_text.text = "Gold: " + mPlayer.getGold() + "/" + mPlayer.getGoldCap();
 		  mana_text.text = "Mana: " + mPlayer.getMana() + "/" + mPlayer.getManaCap();
 		  population_text.text = "Pop: " + mPlayer.getPopulation() + "/" + mPlayer.getPopulationCap();
+      wave_text.text = "Next wave in " + Mathf.RoundToInt(waveControl.Spawn_interval - waveControl.currTimer);
     }
 
     void setEntityPanelEnabled(bool enabled){
@@ -105,6 +112,12 @@ public class PlayerUI : MonoBehaviour
       selectedEntity = null;
       setAbilitiesPanelEnabled(false);
       setEntityPanelEnabled(false);
+    }
+
+    public void endGame(){
+      gameOver_text.enabled = true;
+      gameOver = true;
+      gameOver_text.text = "Game Over! You survived " + (int)timer + "seconds!";
     }
 }
 
