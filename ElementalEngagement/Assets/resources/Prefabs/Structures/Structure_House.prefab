@@ -80,7 +80,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc97ec7f973c35646a1c9bf5af57b4ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthCap: 75
+  healthCap: 125
   healthCurrent: 75
   hpBarUi: {fileID: 0}
   entityName: House

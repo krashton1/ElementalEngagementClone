@@ -93,4 +93,8 @@ public class PlayerBehaviour : MonoBehaviour
 			mMana += i;
 		}
 	}
+
+	public void addPop(int i){
+		mPopulation += i;
+	}
 }

@@ -16,12 +16,19 @@ public class BasicEnemy : Entity {
     public float senseRadius = 1.0f;
     public float attackRadius = 1.0f;
 
+    public int attack_frame_counter = 60;
+    public int current_attack_frame = 0;
+
     float mElapsedTime = 0.0f;
+
+	private Animator anim;
 
     void Start()
     {
         nav = GetComponent<NavMeshAgent>();
         healthCurrent = healthCap;
+        anim = GetComponentInChildren<Animator>();
+        anim.SetBool("Moving", true);
     }
 
     // Update is called once per frame
@@ -36,6 +43,7 @@ public class BasicEnemy : Entity {
         else if (targetObject)
         {
             MoveToTarget(targetObject);
+            AttackTarget();
             SenseTarget();
         }
 
@@ -72,21 +80,6 @@ public class BasicEnemy : Entity {
     // These target handlers are inherited from entity
     override public void targetEntity(GameObject target)
     {
-        AttackComponent a = gameObject.GetComponent<AttackComponent>();
-        if (a)
-        {
-            stopRange = a.SetTarget(target);
-            targetObject = target;
-
-        }
-
-        WorkComponent w = gameObject.GetComponent<WorkComponent>();
-        if (w && target.GetComponent<Structure>())
-        {
-            stopRange = w.SetTarget(target.GetComponent<Structure>());
-            targetObject = target;
-
-        }
 
     }
 
@@ -113,10 +106,12 @@ public class BasicEnemy : Entity {
         if (dist > stopRange)
         {
             nav.destination = target.transform.position;
+            anim.SetBool("Moving", false);
         }
         else
         {
             nav.destination = transform.position;
+            anim.SetBool("Moving", true);
         }
     }
 
@@ -135,9 +130,35 @@ public class BasicEnemy : Entity {
 
     private void AttackTarget()
     {
-        if (Vector3.Distance(transform.position, attackingObject.transform.position) < senseRadius)
+        // attack units
+        if (attackingObject){
+            if (Vector3.Distance(transform.position, attackingObject.transform.position) < attackRadius)
+            {
+                anim.SetBool("Moving", false);
+                anim.SetTrigger("Attack1Trigger");
+                if (current_attack_frame++ > attack_frame_counter) {
+                    current_attack_frame = 0;
+                    attackingObject.GetComponent<Entity>().Damage(attack_damage);
+                }
+            }
+            else{
+                anim.ResetTrigger("Attack1Trigger");
+                anim.SetBool("Moving", true);
+            }
+        }
+        //attack the town center
+        if (Vector3.Distance(transform.position, targetObject.transform.position) < 4 + attackRadius)
         {
-            attackingObject.GetComponent<Entity>().Damage(attack_damage);
+            anim.SetBool("Moving", false);
+            anim.SetTrigger("Attack1Trigger");
+            if (current_attack_frame++ > attack_frame_counter) {
+                current_attack_frame = 0;
+                targetObject.GetComponent<Entity>().Damage(attack_damage);
+            }
+        } 
+        else{
+            anim.ResetTrigger("Attack1Trigger");
+            anim.SetBool("Moving", true);
         }
     }
 }
