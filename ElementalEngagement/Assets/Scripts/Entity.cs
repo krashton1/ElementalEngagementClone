@@ -46,17 +46,22 @@ public class Entity : MonoBehaviour
 
 
 		GameObject go;
-
+        foreach (Transform child in gameObject.transform) {
+            if (child.CompareTag("ElementalFX")) 
+            {Destroy(child.gameObject);
+                break;
+            }
+        }
 		switch (et)
 		{
 			case ElementComponent.ElementType.Fire:
-				go = PrefabUtility.InstantiatePrefab(AssetDatabase.LoadMainAssetAtPath("Assets/ErbGameArt/Procedural fire/Prefabs/Magic fire pro red.prefab")) as GameObject;
+				go = GameObject.Instantiate((GameObject) Resources.Load("ErbGameArt/Procedural fire/Prefabs/Magic fire pro red"));
 				break;
 			case ElementComponent.ElementType.Water:
-				go = PrefabUtility.InstantiatePrefab(AssetDatabase.LoadMainAssetAtPath("Assets/ErbGameArt/Procedural fire/Prefabs/Magic fire pro blue.prefab")) as GameObject;
+				go = GameObject.Instantiate((GameObject) Resources.Load("ErbGameArt/Procedural fire/Prefabs/Magic fire pro blue"));
 				break;
 			case ElementComponent.ElementType.Grass:
-				go = PrefabUtility.InstantiatePrefab(AssetDatabase.LoadMainAssetAtPath("Assets/ErbGameArt/Procedural fire/Prefabs/Magic fire pro green.prefab")) as GameObject;
+				go = GameObject.Instantiate((GameObject) Resources.Load("ErbGameArt/Procedural fire/Prefabs/Magic fire pro green"));
 				break;
 			default:
 				return;
