@@ -12,11 +12,14 @@ public class AttackComponent : MonoBehaviour
     public float attack_range;
     public GameObject target;
     public GameObject projectile;
+    public int attack_damage = 10;
 
 	public int attack_frame_counter = 30;
     public int current_attack_frame;
-	
+    public float senseRange = 15.0f;
+
 	private Animator anim;
+    public Unit unit;
 
     void Start()
     {
@@ -27,14 +30,27 @@ public class AttackComponent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (target != null)
+        if (!target || target.GetComponent<Entity>().MarkedForDeletion)
         {
+            lookForTarget();
+        }
+        else {
             AttackEnemy();
         }
 		else
 		{
 			SenseTarget();
 		}
+    }
+
+    public void lookForTarget(){
+    // Find the nearest structure
+        Collider[] hitColliders = Physics.OverlapSphere(transform.position, senseRange, LayerMask.GetMask("Enemy"));
+
+        if (hitColliders.Length > 0){
+            target = hitColliders[Random.Range(0, hitColliders.Length)].gameObject;
+            unit.targetEntity(target);
+        }
     }
 
     public float SetTarget(GameObject GO)
@@ -50,11 +66,17 @@ public class AttackComponent : MonoBehaviour
             Vector3 dist = target.transform.position - transform.position;
             if (dist.magnitude < attack_range)
             {
+                anim.SetTrigger("Attack1Trigger");
                 if (attack_type == AttackType.Ranged) RangedAttack(dist);
                 else if (attack_type == AttackType.Melee) MeleeAttack();
             }
+            else{
+                anim.ResetTrigger("Attack1Trigger");
+            }
             current_attack_frame = 0;
+
         }
+        
     }
 
     private void RangedAttack(Vector3 dist){
@@ -66,7 +88,7 @@ public class AttackComponent : MonoBehaviour
     }
 
     void MeleeAttack(){
-
+        target.GetComponent<Entity>().Damage(attack_damage);
     }
 
 	private void SenseTarget()
