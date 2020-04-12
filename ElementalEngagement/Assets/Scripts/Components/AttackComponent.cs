@@ -78,7 +78,7 @@ public class AttackComponent : MonoBehaviour
     private void RangedAttack(Vector3 dist){
         Projectile MP = Instantiate(projectile, transform.position + (dist.normalized * 2 * GetComponent<CapsuleCollider>().radius), new Quaternion()).GetComponent<Projectile>();
         MP.SetDirection(dist);
-        MP.SetDamage(50);
+        MP.SetDamage(20);
 		MP.SetElementType(element_type);
         MP.SetGO(gameObject);
     }

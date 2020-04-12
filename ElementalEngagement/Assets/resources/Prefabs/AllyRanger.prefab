@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attack_type: 0
   element_type: 0
-  attack_range: 12
+  attack_range: 15
   target: {fileID: 0}
   projectile: {fileID: 7707406984690250330, guid: 18fe8319fc7011c49b8f663192f87ec6,
     type: 3}
   attack_damage: 10
   attack_frame_counter: 60
   current_attack_frame: 0
-  senseRange: 35
+  senseRange: 25
   unit: {fileID: 7392793916504376110}
 --- !u!114 &6383823889765257525
 MonoBehaviour:
