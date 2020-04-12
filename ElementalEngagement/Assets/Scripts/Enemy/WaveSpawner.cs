@@ -49,16 +49,42 @@ public class WaveSpawner : MonoBehaviour {
         SpawnEnemies(spawn_point);
 
         Spawn_interval = Mathf.Max(30.0f, Spawn_interval * 0.99f);
+		Spawn_interval = 10;
         Spawn_count += 1;
     }
 
     private void SpawnEnemies(Vector3 spawn_point)
     {
-        for (int i = 0; i < Spawn_count; i++)
+
+		System.Random rnd = new System.Random();
+
+		for (int i = 0; i < 1; i++)
         {
             GameObject newEnemy = Instantiate(EnemyGO, spawn_point, Quaternion.identity);
             BasicEnemy BE = newEnemy.GetComponent<BasicEnemy>();
-            BE.SetTarget(HomeBase.gameObject);
+			Entity E = newEnemy.GetComponent<Entity>();
+
+			int r = rnd.Next(3, 4);
+			switch (3)
+			{
+				case 0:
+					E.element_type = ElementComponent.ElementType.None;
+					break;
+				case 1:
+					E.element_type = ElementComponent.ElementType.Fire;
+					break;
+				case 2:
+					E.element_type = ElementComponent.ElementType.Water;
+					break;
+				case 3:
+					E.element_type = ElementComponent.ElementType.Grass;
+					break;
+				default:
+					E.element_type = ElementComponent.ElementType.None;
+					break;
+			}
+
+			BE.SetTarget(HomeBase.gameObject);
         }
     }
 }

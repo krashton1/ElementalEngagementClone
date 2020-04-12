@@ -18,6 +18,7 @@ public class Entity : MonoBehaviour
     public float healthCurrent;
     public Slider hpBarUi;
     public string entityName;
+	public ElementComponent.ElementType element_type;
     public bool MarkedForDeletion = false;
 
     public void handleReceiveTarget(RaycastHit hit, TypeOfTarget type){
@@ -57,10 +58,15 @@ public class Entity : MonoBehaviour
         selected = b;
     }
 
-        public void Damage(int damage_amount)
+    public void Damage(int damage_amount, ElementComponent.ElementType elem_type = ElementComponent.ElementType.None)
     {
-        healthCurrent -= damage_amount;
-        if (healthCurrent < 0)
+		if (ElementComponent.getStrength(elem_type) == element_type)
+			damage_amount *= 2;
+		else if (ElementComponent.getWeakness(elem_type) == element_type)
+			damage_amount /= 2;
+
+		healthCurrent -= damage_amount;
+        if (healthCurrent <= 0)
         {
             Destroy(gameObject);
         }
