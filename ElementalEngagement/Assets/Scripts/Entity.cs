@@ -87,7 +87,7 @@ public class Entity : MonoBehaviour
         selected = b;
     }
 
-    public void Damage(int damage_amount, ElementComponent.ElementType elem_type = ElementComponent.ElementType.None)
+    public void Damage(float damage_amount, ElementComponent.ElementType elem_type = ElementComponent.ElementType.None)
     {
 		if (ElementComponent.getStrength(elem_type) == element_type)
 			damage_amount *= 2;

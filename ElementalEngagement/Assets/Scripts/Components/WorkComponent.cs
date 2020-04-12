@@ -174,27 +174,36 @@ public class WorkComponent : MonoBehaviour
         target = null;
         state = States.Sensing;
 
+		float dist = 10000;
 
-        // Find a nearby ore deposit
-        Collider[] hitColliders = Physics.OverlapSphere(currentOreDeposit.transform.position, senseRange, LayerMask.GetMask("Choosable"));
+		// Find a nearby ore deposit
+		Collider[] hitColliders = Physics.OverlapSphere(currentOreDeposit.transform.position, senseRange, LayerMask.GetMask("Choosable"));
         Structure newOreDeposit = null;
         for (int i = 0; i < hitColliders.Length; i++)
         {
             ResourceComponent s = hitColliders[i].gameObject.GetComponent<ResourceComponent>();
             if (!s) continue;
             if (s.isDropoffPoint()) continue;
-            newOreDeposit = hitColliders[i].gameObject.GetComponent<Structure>();
+			if(Vector3.Distance(transform.position, s.transform.position) < dist)
+			{
+				if(hitColliders[i].gameObject.GetComponent<Structure>() != currentOreDeposit)
+				{
+
+					newOreDeposit = hitColliders[i].gameObject.GetComponent<Structure>();
+					dist = Vector3.Distance(transform.position, s.transform.position);
+				}
+			}
+
 
         }
 
         if (newOreDeposit){
             state = States.Moving;
-            unit.targetEntity(newOreDeposit.gameObject);
-        }
+			unit.targetEntity(newOreDeposit.gameObject);
+		}
         else {
             state = States.Waiting;
         }
-        currentOreDeposit.Delete();
 
     }
 }

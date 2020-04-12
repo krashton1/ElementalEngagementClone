@@ -17,8 +17,13 @@ public class ResourceComponent : MonoBehaviour
         if (gatherTimer >= timeToGather){
             gatherTimer = 0;
             resourceCount--;
-            gameObject.GetComponent<Entity>().Damage(1);
-            if (resourceCount == 0) return Structure.WorkReturnCode.Exhausted;
+			
+			if (resourceCount <= 0)
+			{
+				Entity E = gameObject.GetComponent<Entity>();
+				E.Damage(E.healthCap);
+				return Structure.WorkReturnCode.Exhausted;
+			} 
             else return Structure.WorkReturnCode.GiveOre;
         }
         return Structure.WorkReturnCode.None;
