@@ -94,7 +94,7 @@ public class PlayerUI : MonoBehaviour
           foreach (Ability a in entity.gameObject.GetComponent<AbilityContainer>().GetAbilities()){
             GameObject b = GameObject.Instantiate(abilityButtonPrefab, Vector3.zero, Quaternion.identity, AbilitiesPanel.transform);
 
-              b.GetComponentInChildren<Text>().text = a.getCost().gold.ToString() + "G " + a.getCost().mana.ToString() + "M :" + a.getName();
+              b.GetComponentInChildren<Text>().text = a.getCost().gold.ToString() + "G " + a.getCost().mana.ToString() + "M: " + a.getName();
               b.GetComponent<Button>().onClick.AddListener(delegate{a.invoke(selectedEntity.gameObject);});
           }
         }
