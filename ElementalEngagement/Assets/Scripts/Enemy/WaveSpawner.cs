@@ -61,14 +61,17 @@ public class WaveSpawner : MonoBehaviour {
 
     private void SpawnEnemies(Vector3 spawn_point)
     {
+
         float r = Spawn_count;
         List<Vector2> points = PoissonDiscSampling.GeneratePoints(0.25f, new Vector2(r, r));
         for (int i = 0; i < Spawn_count; i++)
+
         {
             Vector3 spawn = spawn_point + new Vector3 (points[i].x, 0, points[i].y);
             GameObject newEnemy = Instantiate(EnemyGO, spawn, Quaternion.identity);
             BasicEnemy BE = newEnemy.GetComponent<BasicEnemy>();
-            BE.SetTarget(HomeBase.gameObject);
+
+			BE.SetTarget(HomeBase.gameObject);
         }
     }
 }

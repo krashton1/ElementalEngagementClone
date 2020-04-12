@@ -20,7 +20,32 @@ public class Unit : Entity {
         nav = GetComponent<NavMeshAgent>();
         healthCurrent = healthCap;
 		anim = GetComponentInChildren<Animator>();
-    }
+
+		if(this.transform.GetComponent<WorkComponent>() == null)
+		{
+			System.Random rnd = new System.Random();
+			int r = rnd.Next(0, 4);
+			switch (r)
+			{
+				case 0:
+					setElementType(ElementComponent.ElementType.None);
+					break;
+				case 1:
+					setElementType(ElementComponent.ElementType.Fire);
+					break;
+				case 2:
+					setElementType(ElementComponent.ElementType.Water);
+					break;
+				case 3:
+					setElementType(ElementComponent.ElementType.Grass);
+					break;
+				default:
+					setElementType(ElementComponent.ElementType.None);
+					break;
+			}
+		}
+		
+	}
 
     // Update is called once per frame
     void Update()

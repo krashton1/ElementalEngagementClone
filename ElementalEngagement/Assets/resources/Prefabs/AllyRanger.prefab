@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd5de9ace86eaf447a781e48228ee910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  attack_type: 0
+  element_type: 0
   attack_range: 12
   target: {fileID: 0}
   projectile: {fileID: 7707406984690250330, guid: 18fe8319fc7011c49b8f663192f87ec6,

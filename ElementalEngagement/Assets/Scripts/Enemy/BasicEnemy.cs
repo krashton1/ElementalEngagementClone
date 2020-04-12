@@ -5,6 +5,7 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 
 
+
 public class BasicEnemy : Entity {
     // Start is called before the first frame update
     public float speed = 1.0f;
@@ -30,11 +31,11 @@ public class BasicEnemy : Entity {
         anim = GetComponentInChildren<Animator>();
         anim.SetBool("Moving", true);
     }
+	}
 
     // Update is called once per frame
     void Update()
     {
-
         if (attackingObject)
         {
             MoveToTarget(attackingObject);
@@ -47,17 +48,6 @@ public class BasicEnemy : Entity {
             SenseTarget();
         }
 
-        // Time since last update, this is only here so that health can be modified over time
-        mElapsedTime += Time.deltaTime;
-        if (mElapsedTime >= 0.1f)
-        {
-            mElapsedTime = mElapsedTime % 0.1f;
-
-            if (healthCurrent < healthCap)
-            {
-                healthCurrent++;
-            }
-        }
 
         // If a health bar has been attached, enable it if we have selected this piece, make it follow the piece, and update its value to the piece's current health.
         if (hpBarUi != null)
@@ -138,7 +128,7 @@ public class BasicEnemy : Entity {
                 anim.SetTrigger("Attack1Trigger");
                 if (current_attack_frame++ > attack_frame_counter) {
                     current_attack_frame = 0;
-                    attackingObject.GetComponent<Entity>().Damage(attack_damage);
+                    attackingObject.GetComponent<Entity>().Damage(attack_damage, element_type);
                 }
             }
             else{
@@ -153,7 +143,7 @@ public class BasicEnemy : Entity {
             anim.SetTrigger("Attack1Trigger");
             if (current_attack_frame++ > attack_frame_counter) {
                 current_attack_frame = 0;
-                targetObject.GetComponent<Entity>().Damage(attack_damage);
+                targetObject.GetComponent<Entity>().Damage(attack_damage, element_type);
             }
         } 
         else{

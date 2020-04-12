@@ -1,10 +1,15 @@
 ﻿using UnityEngine;
+
 public class Projectile : MonoBehaviour {
-    public int damage = 5;
+
+	
+	public int damage = 5;
     public float speed = 0.5f;
     public Vector3 direction;
     private GameObject parent;
     float lifetime = 2;
+
+	public ElementComponent.ElementType element_type = ElementComponent.ElementType.None;
 
     // Start is called before the first frame update
     void Start()
@@ -32,7 +37,12 @@ public class Projectile : MonoBehaviour {
         damage = damage_amount;
     }
 
-    public void SetGO(GameObject GO)
+	public void SetElementType(ElementComponent.ElementType et)
+	{
+		element_type = et;
+	}
+
+	public void SetGO(GameObject GO)
     {
         parent = GO;
     }
@@ -42,7 +52,7 @@ public class Projectile : MonoBehaviour {
         if (!C.gameObject.Equals(parent))
         {
             Entity E = C.gameObject.GetComponent<Entity>();
-            E.Damage(damage);
+            E.Damage(damage, element_type);
             Destroy(gameObject);
         }
     }

@@ -7,7 +7,8 @@ public class AttackComponent : MonoBehaviour
 
     public enum AttackType {Ranged, Melee, Magic};
 
-    public AttackType type;
+    public AttackType attack_type;
+	public ElementComponent.ElementType element_type;
     public float attack_range;
     public GameObject target;
     public GameObject projectile;
@@ -77,7 +78,8 @@ public class AttackComponent : MonoBehaviour
     private void RangedAttack(Vector3 dist){
         Projectile MP = Instantiate(projectile, transform.position + (dist.normalized * 2 * GetComponent<CapsuleCollider>().radius), new Quaternion()).GetComponent<Projectile>();
         MP.SetDirection(dist);
-        MP.SetDamage(25);
+        MP.SetDamage(50);
+		MP.SetElementType(element_type);
         MP.SetGO(gameObject);
     }
 

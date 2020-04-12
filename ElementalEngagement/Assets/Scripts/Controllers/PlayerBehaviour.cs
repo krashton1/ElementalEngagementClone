@@ -81,6 +81,7 @@ public class PlayerBehaviour : MonoBehaviour
 	public void addPopulationCap(int i){
 		mPopulationCap += i;
 	}
+	
 
 	public void addGold(int i){
 		if (mGold + i >= 0 && mGold + i <= mGoldCap){
