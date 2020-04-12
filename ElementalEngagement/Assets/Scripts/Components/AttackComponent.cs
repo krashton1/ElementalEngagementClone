@@ -37,10 +37,6 @@ public class AttackComponent : MonoBehaviour
         else {
             AttackEnemy();
         }
-		else
-		{
-			SenseTarget();
-		}
     }
 
     public void lookForTarget(){
@@ -90,17 +86,4 @@ public class AttackComponent : MonoBehaviour
     void MeleeAttack(){
         target.GetComponent<Entity>().Damage(attack_damage);
     }
-
-	private void SenseTarget()
-	{
-		GameObject[] allEntities = GameObject.FindGameObjectsWithTag("Flock");
-		foreach (GameObject GO in allEntities)
-		{
-			if (Vector3.Distance(transform.position, GO.transform.position) <= attack_range)
-			{
-				SetTarget(GO);
-				return;
-			}
-		}
-	}
 }
