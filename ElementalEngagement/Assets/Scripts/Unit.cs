@@ -123,7 +123,7 @@ public class Unit : Entity {
     }
 
     private void OnDestroy() {
-        if (GameObject.Find("PlayerController")){
+        if (gameObject.CompareTag("Player") && GameObject.Find("PlayerController")){
             GameObject.Find("PlayerController").GetComponent<PlayerBehaviour>().addPop(-1);
         }
     }
