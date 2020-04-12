@@ -63,7 +63,7 @@ public class Unit : Entity {
 
             if (healthCurrent < healthCap)
             {
-                healthCurrent++;
+                healthCurrent += 2 * Time.deltaTime;
             }
         }
 
@@ -144,6 +144,12 @@ public class Unit : Entity {
         else
         {
             nav.destination = transform.position;
+        }
+    }
+
+    private void OnDestroy() {
+        if (GameObject.Find("PlayerController")){
+            GameObject.Find("PlayerController").GetComponent<PlayerBehaviour>().addPop(-1);
         }
     }
 

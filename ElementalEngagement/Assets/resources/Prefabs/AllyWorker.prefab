@@ -14,12 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   workingRange: 0.5
   target: {fileID: 0}
-  workSpeed: 25
-  resourceCap: 10
+  workSpeed: 30
+  resourceCap: 5
+  resourceCount: 0
   state: 0
   job: 0
-  senseRange: 15
+  senseRange: 30
   unit: {fileID: 4238228600810308239}
+  resourceController: {fileID: 0}
 --- !u!114 &2030733408089506205
 MonoBehaviour:
   m_ObjectHideFlags: 0

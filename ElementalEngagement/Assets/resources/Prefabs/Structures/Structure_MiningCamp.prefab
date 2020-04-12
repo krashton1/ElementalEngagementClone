@@ -64,10 +64,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc97ec7f973c35646a1c9bf5af57b4ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthCap: 100
+  healthCap: 125
   healthCurrent: 100
   hpBarUi: {fileID: 0}
   entityName: Mining Camp
+  MarkedForDeletion: 0
   dimensions: {x: 2, y: 2}
   type: Mining Camp
   finished: 0

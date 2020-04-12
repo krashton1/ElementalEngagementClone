@@ -20,7 +20,7 @@ public class UnitSpawnerAbility : Ability
 		{
 				resourceManager.addGold(-cost.gold);
                 resourceManager.addMana(-cost.mana);
-				resourceManager.setPopulation(resourceManager.getPopulation() + 1);
+				resourceManager.addPop(1);
 				GameObject newUnit = GameObject.Instantiate(prefab, source.transform.position, new Quaternion());
                 if (source.GetComponent<UnitSpawner>()){
                     source.GetComponent<UnitSpawner>().onUnitSpawn(newUnit);

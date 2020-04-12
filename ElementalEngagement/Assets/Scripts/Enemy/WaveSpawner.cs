@@ -13,9 +13,11 @@ public class WaveSpawner : MonoBehaviour {
     public float Spawn_radius = 1.0f;
     public float Spawn_interval = 35.0f;
     public float Min_Spawn_interval = 30.0f;
-    public int Spawn_count = 1;
+    public int Spawn_count = 2;
 
     private float currTimer = 0;
+
+    public MapGrid grid;
 
     void Start()
     {
@@ -42,24 +44,31 @@ public class WaveSpawner : MonoBehaviour {
     public void SpawnWave()
     {
         Vector3 start = HomeBase.transform.position;
-        float start_y = start.y;
-        Vector3 spawn_point = Spawn_radius * new Vector3(Mathf.Cos(Time.realtimeSinceStartup), 1, Mathf.Sin(Time.realtimeSinceStartup)) + start;
-        spawn_point.y = start_y;
+        float start_y = 0.5f;
+        bool valid = false;
+        Vector3 spawn_point = Vector3.zero;
+        while(!valid){
+            spawn_point = new Vector3(150, 0, 150) + Spawn_radius * new Vector3(Mathf.Cos(Time.realtimeSinceStartup), 1, Mathf.Sin(Time.realtimeSinceStartup));
+            spawn_point.y = start_y;
+            valid = grid.getTileAt(spawn_point.x, spawn_point.y).isEmpty();
+        }
 
         SpawnEnemies(spawn_point);
 
-        Spawn_interval = Mathf.Max(30.0f, Spawn_interval * 0.99f);
+        Spawn_interval = Mathf.Max(Min_Spawn_interval, Spawn_interval * 0.90f);
         Spawn_count += 1;
     }
 
     private void SpawnEnemies(Vector3 spawn_point)
     {
 
-		System.Random rnd = new System.Random();
+        float r = Spawn_count;
+        List<Vector2> points = PoissonDiscSampling.GeneratePoints(0.25f, new Vector2(r, r));
+        for (int i = 0; i < Spawn_count; i++)
 
-		for (int i = 0; i < Spawn_count; i++)
         {
-            GameObject newEnemy = Instantiate(EnemyGO, spawn_point, Quaternion.identity);
+            Vector3 spawn = spawn_point + new Vector3 (points[i].x, 0, points[i].y);
+            GameObject newEnemy = Instantiate(EnemyGO, spawn, Quaternion.identity);
             BasicEnemy BE = newEnemy.GetComponent<BasicEnemy>();
 
 			BE.SetTarget(HomeBase.gameObject);
