@@ -17,6 +17,7 @@ public class EnchantAbility : Ability
     public override void invoke(GameObject source, bool repeated=false){
        if(resourceManager.getMana() >= cost.mana)
 		{
+            resourceManager.addMana(-cost.mana);
 			source.GetComponent<Entity>().setElementType(element);
 		}
     }

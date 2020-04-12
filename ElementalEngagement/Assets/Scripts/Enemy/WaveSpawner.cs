@@ -14,7 +14,7 @@ public class WaveSpawner : MonoBehaviour {
     public float Min_Spawn_interval = 30.0f;
     public int Spawn_count = 1;
 
-    private float currTimer = 0;
+    public float currTimer = 0;
 
     public MapGrid grid;
 

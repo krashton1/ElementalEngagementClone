@@ -18,6 +18,8 @@ class InputManager : MonoBehaviour {
 
     public PlayerUI ui;
 
+    public bool GameOver = false;
+
 
     void Start()
     {
@@ -30,6 +32,9 @@ class InputManager : MonoBehaviour {
     {
         CheckSelectedUnits();
         HandleInput();
+        if (GameOver){
+            ui.endGame();
+        }
     }
 
     private void CheckSelectedUnits()
@@ -55,33 +60,37 @@ class InputManager : MonoBehaviour {
 
     void HandleInput()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            HandleMouseOneEvent();
-            mouse_one_pressed = Input.mousePosition;
+        if (!GameOver){
+            if (Input.GetMouseButtonDown(0))
+            {
+                HandleMouseOneEvent();
+                mouse_one_pressed = Input.mousePosition;
+            }
+            else if (Input.GetMouseButtonDown(1))
+            {
+                HandleMouseTwoEvent();
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                mouse_one_released = Input.mousePosition;
+                if (mouse_one_pressed != mouse_one_released)
+                    BoxSelectGO();
+                drawBox = false;
+            }
+            else if (Input.GetMouseButton(0))
+            {
+                drawBox = true;
+            }
+
+            if (Input.GetKey(KeyCode.Delete))
+            {
+                deleteSelected();
+            }
         }
-        else if (Input.GetMouseButtonDown(1))
-        {
-            HandleMouseTwoEvent();
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            mouse_one_released = Input.mousePosition;
-            if (mouse_one_pressed != mouse_one_released)
-                BoxSelectGO();
-            drawBox = false;
-        }
-        else if (Input.GetMouseButton(0))
-        {
-            drawBox = true;
-        }
+
         if (Input.GetKey("escape"))
         {
             Application.Quit();
-        }
-        if (Input.GetKey(KeyCode.Delete))
-        {
-            deleteSelected();
         }
     }
 
