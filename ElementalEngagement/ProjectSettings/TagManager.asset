@@ -9,6 +9,7 @@ TagManager:
   - Construction Model
   - Alt Model
   - Home Base
+  - Enemy
   layers:
   - Default
   - TransparentFX

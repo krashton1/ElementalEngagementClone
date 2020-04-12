@@ -132,7 +132,8 @@ MonoBehaviour:
   healthCurrent: 100
   hpBarUi: {fileID: 4114865415948747097}
   entityName: Unit
-  speed: 1
+  element_type: 0
+  MarkedForDeletion: 0
   stopRange: 1
   targetObject: {fileID: 0}
 --- !u!114 &7620895899078764387
@@ -151,6 +152,8 @@ MonoBehaviour:
   healthCurrent: 0
   hpBarUi: {fileID: 0}
   entityName: 
+  element_type: 0
+  MarkedForDeletion: 0
   speed: 1
   stopRange: 1
   targetObject: {fileID: 0}

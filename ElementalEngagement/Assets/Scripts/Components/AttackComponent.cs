@@ -13,7 +13,7 @@ public class AttackComponent : MonoBehaviour
     public GameObject target;
     public GameObject projectile;
 
-    public int attack_frame_counter = 30;
+	public int attack_frame_counter = 30;
     public int current_attack_frame;
 	
 	private Animator anim;
@@ -31,6 +31,10 @@ public class AttackComponent : MonoBehaviour
         {
             AttackEnemy();
         }
+		else
+		{
+			SenseTarget();
+		}
     }
 
     public float SetTarget(GameObject GO)
@@ -64,4 +68,17 @@ public class AttackComponent : MonoBehaviour
     void MeleeAttack(){
 
     }
+
+	private void SenseTarget()
+	{
+		GameObject[] allEntities = GameObject.FindGameObjectsWithTag("Flock");
+		foreach (GameObject GO in allEntities)
+		{
+			if (Vector3.Distance(transform.position, GO.transform.position) <= attack_range)
+			{
+				SetTarget(GO);
+				return;
+			}
+		}
+	}
 }
